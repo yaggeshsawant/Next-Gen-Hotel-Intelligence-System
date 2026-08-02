@@ -10,7 +10,7 @@ from pydrive.drive import GoogleDrive
 # -------------------------------
 scope = ['https://www.googleapis.com/auth/drive']
 
-SERVICE_ACCOUNT_FILE = "D:/PML_Project/service_account.json"  # Path to your JSON key
+SERVICE_ACCOUNT_FILE = "/Users/mohitkumbhar/cdac/PML-Project/dataset/service_account.json"  # Path to your JSON key
 FILE_ID = "1Wn39Hew_1ACrL3_aqdfLe97Q97Nsv323"  # Keep File ID here
 
 
