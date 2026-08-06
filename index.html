@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hotel Recommender · Purple Edition</title>
+    <title>NextGen · Hotel Recommender</title>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
@@ -46,7 +46,7 @@
             background: #a0a8bd;
         }
 
-        /* ---------- SIDEBAR (IMPROVED) ---------- */
+        /* ---------- SIDEBAR ---------- */
         .sidebar {
             width: 260px;
             min-width: 260px;
@@ -294,39 +294,6 @@
             gap: 16px;
         }
 
-        .main-header .header-actions .search-wrap {
-            display: flex;
-            align-items: center;
-            background: #f5f7fb;
-            border-radius: 40px;
-            padding: 6px 16px 6px 14px;
-            gap: 10px;
-            border: 1px solid #edf0f7;
-            transition: 0.2s;
-        }
-        .main-header .header-actions .search-wrap:focus-within {
-            border-color: #7C3AED;
-            background: #fff;
-            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.08);
-        }
-        .main-header .header-actions .search-wrap i {
-            color: #8f9abb;
-            font-size: 14px;
-        }
-        .main-header .header-actions .search-wrap input {
-            border: none;
-            background: transparent;
-            padding: 6px 0;
-            font-size: 13px;
-            outline: none;
-            font-family: 'Inter', sans-serif;
-            width: 160px;
-            color: #1e1e2f;
-        }
-        .main-header .header-actions .search-wrap input::placeholder {
-            color: #a6b0cc;
-        }
-
         .main-header .header-actions .status-chip {
             background: #f5f3ff;
             color: #5B21B6;
@@ -350,153 +317,91 @@
 
         @keyframes pulse-dot {
             0%,
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.5;
-                transform: scale(0.85);
-            }
+            100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.85); }
         }
 
         /* ---------- TAB CONTENT ---------- */
         .tab-content {
             flex: 1;
-            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
             padding: 28px 32px 40px;
+            overflow-y: auto;
         }
 
         .tab-pane {
             display: none;
+            flex: 1;
             animation: fadeUp 0.3s ease;
         }
         .tab-pane.active {
-            display: block;
+            display: flex;
+            flex-direction: column;
         }
 
         @keyframes fadeUp {
-            0% {
-                opacity: 0;
-                transform: translateY(8px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            0% { opacity: 0; transform: translateY(8px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
-        /* ---------- TAB 1: ML SCORES + SENTIMENT ---------- */
-        .ml-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 28px;
-        }
-
-        @media (max-width: 900px) {
-            .ml-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .card {
+        /* ---------- SENTIMENT CARD (fills space) ---------- */
+        #tab1 .card {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px 40px;
+            min-height: 0;
             background: #ffffff;
             border-radius: 18px;
-            padding: 24px 26px;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
             border: 1px solid #edf0f7;
             transition: 0.2s;
         }
 
-        .card-title {
+        #tab1 .sentiment-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        #tab1 #sentimentInput {
+            flex: 1;
+            min-height: 120px;
+            resize: vertical;
+            padding: 16px 20px;
+            border-radius: 14px;
+            border: 1.5px solid #edf0f7;
+            font-family: 'Inter', sans-serif;
             font-size: 16px;
+            outline: none;
+            background: #fafbfd;
+            color: #1e1e2f;
+            transition: 0.2s;
+        }
+        #tab1 #sentimentInput:focus {
+            border-color: #7C3AED;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.08);
+        }
+
+        .card-title {
+            font-size: 20px;
             font-weight: 600;
             color: #131625;
             margin-bottom: 18px;
             display: flex;
             align-items: center;
             gap: 10px;
+            justify-content: center;
         }
         .card-title i {
             color: #7C3AED;
-            font-size: 18px;
-        }
-
-        .score-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        .score-item {
-            background: #fafbfd;
-            border-radius: 14px;
-            padding: 16px 18px;
-            border: 1px solid #edf0f7;
-            transition: 0.2s;
-        }
-        .score-item:hover {
-            border-color: #d5d9e6;
-        }
-        .score-item .label {
-            font-size: 12px;
-            font-weight: 500;
-            color: #7c84a3;
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
-        }
-        .score-item .value {
-            font-size: 28px;
-            font-weight: 700;
-            color: #131625;
-            margin-top: 4px;
-            display: flex;
-            align-items: baseline;
-            gap: 6px;
-        }
-        .score-item .value .sub {
-            font-size: 14px;
-            font-weight: 500;
-            color: #8f9abb;
-        }
-        .score-item .bar-wrap {
-            margin-top: 10px;
-            height: 4px;
-            background: #e8ecf3;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        .score-item .bar-wrap .bar-fill {
-            height: 100%;
-            border-radius: 8px;
-            background: linear-gradient(90deg, #7C3AED, #A78BFA);
-            transition: width 0.8s ease;
-        }
-
-        .sentiment-area {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .sentiment-area textarea {
-            width: 100%;
-            padding: 14px 18px;
-            border-radius: 14px;
-            border: 1.5px solid #edf0f7;
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            resize: vertical;
-            min-height: 90px;
-            transition: 0.2s;
-            background: #fafbfd;
-            color: #1e1e2f;
-            outline: none;
-        }
-        .sentiment-area textarea:focus {
-            border-color: #7C3AED;
-            background: #fff;
-            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.08);
+            font-size: 24px;
         }
 
         .sentiment-actions {
@@ -504,16 +409,17 @@
             gap: 12px;
             flex-wrap: wrap;
             align-items: center;
+            justify-content: center;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 10px 24px;
+            padding: 12px 40px;
             border-radius: 40px;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 16px;
             border: none;
             cursor: pointer;
             transition: 0.2s;
@@ -539,61 +445,53 @@
             color: #7C3AED;
             background: #f5f3ff;
         }
-        .btn-success {
-            background: #22c55e;
-            color: #fff;
-        }
-        .btn-success:hover {
-            background: #16a34a;
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.25);
-        }
-        .btn-danger {
-            background: #ef4444;
-            color: #fff;
-        }
-        .btn-danger:hover {
-            background: #dc2626;
-            transform: translateY(-1px);
-        }
-        .btn-sm {
-            padding: 6px 16px;
-            font-size: 12px;
-        }
 
-        .sentiment-result {
-            margin-top: 14px;
-            padding: 16px 20px;
-            border-radius: 14px;
+        /* ---------- Result card ---------- */
+        #resultCard {
+            border-radius: 16px;
+            padding: 28px 32px;
             background: #fafbfd;
             border: 1px solid #edf0f7;
+            transition: background 0.3s;
+        }
+        #resultCard.sentiment-good {
+            background: #f0fdf4;
+            border-color: #86efac;
+        }
+        #resultCard.sentiment-bad {
+            background: #fef2f2;
+            border-color: #fca5a5;
+        }
+        #resultCard.sentiment-neutral {
+            background: #fffbeb;
+            border-color: #fcd34d;
+        }
+
+        .prob-bar {
+            flex: 1;
+            min-width: 80px;
+        }
+        .prob-bar .label {
+            font-size: 12px;
+            color: #6b78a0;
             display: flex;
-            align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
+            justify-content: space-between;
         }
-        .sentiment-result .tag {
-            font-weight: 600;
-            padding: 4px 16px;
-            border-radius: 40px;
-            font-size: 13px;
+        .prob-bar .track {
+            height: 4px;
+            background: #e8ecf3;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 2px;
         }
-        .sentiment-result .tag.positive {
-            background: #dcfce7;
-            color: #166534;
+        .prob-bar .fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.6s ease;
         }
-        .sentiment-result .tag.negative {
-            background: #fee2e2;
-            color: #991b1b;
-        }
-        .sentiment-result .tag.neutral {
-            background: #fef9c3;
-            color: #854d0e;
-        }
-        .sentiment-result .confidence {
-            color: #5f6a8a;
-            font-size: 13px;
-        }
+        .fill-good { background: #22c55e; }
+        .fill-bad { background: #ef4444; }
+        .fill-neutral { background: #f59e0b; }
 
         /* ---------- TAB 2: TABLEAU ---------- */
         .tableau-container {
@@ -601,7 +499,8 @@
             border-radius: 18px;
             border: 1px solid #edf0f7;
             overflow: hidden;
-            height: 600px;
+            height: 100%;
+            flex: 1;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
             position: relative;
         }
@@ -642,7 +541,8 @@
             border-radius: 18px;
             border: 1px solid #edf0f7;
             overflow: hidden;
-            height: 620px;
+            flex: 1;
+            min-height: 0;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
         }
 
@@ -748,7 +648,7 @@
         }
 
         .msg {
-            max-width: 80%;   /* slightly wider for formatted text */
+            max-width: 80%;
             padding: 12px 18px;
             border-radius: 18px;
             font-size: 14px;
@@ -768,7 +668,6 @@
             color: #1e1e2f;
             border-bottom-left-radius: 4px;
         }
-        /* Markdown rendered content inside bot messages */
         .msg.bot h1, .msg.bot h2, .msg.bot h3, .msg.bot h4 {
             margin: 8px 0 4px 0;
             font-weight: 600;
@@ -846,35 +745,10 @@
             background: #ffffff;
             border-radius: 18px;
             border: 1px solid #edf0f7;
-            overflow: hidden;
-            height: 620px;
+            padding: 30px 40px;
+            flex: 1;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-        }
-        .feedback-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        .feedback-placeholder {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            color: #8f9abb;
-            gap: 12px;
-            background: #fafbfd;
-            padding: 40px;
-            text-align: center;
-        }
-        .feedback-placeholder i {
-            font-size: 48px;
-            color: #c8cedb;
-        }
-        .feedback-placeholder p {
-            font-size: 14px;
-            max-width: 400px;
-            line-height: 1.7;
+            overflow-y: auto;
         }
 
         /* ---------- RESPONSIVE ---------- */
@@ -924,9 +798,6 @@
             .main-header .header-actions {
                 flex-wrap: wrap;
             }
-            .main-header .header-actions .search-wrap input {
-                width: 100px;
-            }
 
             .tab-content {
                 padding: 18px 16px 30px;
@@ -934,7 +805,6 @@
 
             .chat-wrapper {
                 flex-direction: column;
-                height: auto;
                 min-height: 540px;
             }
             .chat-history {
@@ -944,10 +814,6 @@
                 border-bottom: 1px solid #edf0f7;
                 max-height: 160px;
                 padding: 14px;
-            }
-            .chat-messages {
-                padding: 16px;
-                max-height: 300px;
             }
             .chat-input-area {
                 flex-direction: column;
@@ -960,106 +826,29 @@
                 justify-content: center;
             }
 
-            .score-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .ml-grid {
-                grid-template-columns: 1fr;
-            }
-            .tableau-container,
             .feedback-container {
-                height: 400px;
+                padding: 20px;
+            }
+            #tab1 .card {
+                padding: 20px;
             }
         }
 
         @media (max-width: 480px) {
-            .score-grid {
-                grid-template-columns: 1fr;
-            }
-            .sentiment-actions {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .sentiment-actions .btn {
-                justify-content: center;
-            }
             .main-header .page-title {
                 font-size: 17px;
             }
+            .btn {
+                padding: 10px 24px;
+                font-size: 14px;
+            }
+            #resultCard {
+                padding: 16px;
+            }
+            #tab1 .card {
+                padding: 16px;
+            }
         }
-
-        .mt-8 {
-            margin-top: 8px;
-        }
-        .gap-8 {
-            gap: 8px;
-        }
-        .flex {
-            display: flex;
-        }
-        .items-center {
-            align-items: center;
-        }
-        .text-muted {
-            color: #7c84a3;
-            font-size: 13px;
-        }
-
-        .score-item[style*="background:#f0f7ff"] {
-            background: #f5f3ff !important;
-            border-color: #ddd6fe !important;
-        }
-        .score-item[style*="background:#f0f7ff"] .label {
-            color: #5B21B6;
-        }
-        .score-item[style*="background:#f0f7ff"] strong {
-            color: #7C3AED;
-        }
-        .score-item[style*="background:#f0f7ff"] span[style*="color:#22c55e"] {
-            color: #7C3AED !important;
-        }
-        /* Sentiment result enhancements */
-#resultCard {
-    transition: background 0.4s ease, border-color 0.4s ease;
-}
-#resultCard.sentiment-good {
-    background: #f0fdf4;
-    border-color: #86efac;
-}
-#resultCard.sentiment-bad {
-    background: #fef2f2;
-    border-color: #fca5a5;
-}
-#resultCard.sentiment-neutral {
-    background: #fffbeb;
-    border-color: #fcd34d;
-}
-
-.prob-bar {
-    flex:1;
-    min-width:80px;
-}
-.prob-bar .label {
-    font-size:12px;
-    color:#6b78a0;
-    display:flex;
-    justify-content:space-between;
-}
-.prob-bar .track {
-    height:4px;
-    background:#e8ecf3;
-    border-radius:4px;
-    overflow:hidden;
-    margin-top:2px;
-}
-.prob-bar .fill {
-    height:100%;
-    border-radius:4px;
-    transition: width 0.6s ease;
-}
-.fill-good { background: #22c55e; }
-.fill-bad { background: #ef4444; }
-.fill-neutral { background: #f59e0b; }
     </style>
 </head>
 <body>
@@ -1067,28 +856,18 @@
     <!-- ============ SIDEBAR ============ -->
     <aside class="sidebar">
         <div class="sidebar-brand">
-            <div class="brand-icon">H</div>
+            <div class="brand-icon">N</div>
             <div>
-                <h2>Hotel<span>AI</span></h2>
-                <small>Recommender Ops</small>
+                <h2>Next<span>Gen</span></h2>
+                <small>Recommendations</small>
             </div>
-        </div>
-
-        <div class="sidebar-profile">
-            <div class="avatar">JM</div>
-            <div class="user-details">
-                <div class="name">Jordan M.</div>
-                <div class="role">ML Engineer</div>
-            </div>
-            <span class="status-badge"></span>
         </div>
 
         <nav class="sidebar-nav">
             <div class="nav-label">Analytics</div>
             <div class="nav-item active" data-tab="tab1">
                 <i class="fas fa-chart-line"></i>
-                <span>ML Scores</span>
-                <span class="badge">v2.1</span>
+                <span>Sentiment Analysis</span>
             </div>
             <div class="nav-item" data-tab="tab2">
                 <i class="fas fa-chart-pie"></i>
@@ -1105,17 +884,17 @@
             <div class="nav-label" style="margin-top:18px;">Feedback</div>
             <div class="nav-item" data-tab="tab4">
                 <i class="fas fa-star"></i>
-                <span>Rate Us</span>
+                <span>Feedback</span>
             </div>
         </nav>
 
         <div class="sidebar-stats">
             <div class="stat">
-                <div class="num">4.8</div>
+                <div class="num">7.5</div>
                 <div class="label">Avg Rating</div>
             </div>
             <div class="stat">
-                <div class="num">2.1k</div>
+                <div class="num">515k+</div>
                 <div class="label">Reviews</div>
             </div>
         </div>
@@ -1132,13 +911,9 @@
         <header class="main-header">
             <div class="page-title">
                 <i class="fas fa-hotel"></i>
-                <span id="pageTitle">ML Model Scores</span>
+                <span id="pageTitle">Sentiment Analysis</span>
             </div>
             <div class="header-actions">
-                <div class="search-wrap">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Search hotels..." id="globalSearch" />
-                </div>
                 <div class="status-chip">
                     <span class="dot"></span> System Online
                 </div>
@@ -1149,64 +924,54 @@
         <div class="tab-content">
 
             <!-- ===== TAB 1: SENTIMENT PREDICTOR ===== -->
-<div class="tab-pane active" id="tab1">
-    <div class="card" style="max-width:800px; margin:0 auto;">
-        <div class="card-title" style="justify-content:center;">
-            <i class="fas fa-robot" style="color:#7C3AED;"></i> 
-            Hotel Review Sentiment Analysis
-            <span style="font-size:12px; font-weight:400; color:#8f9abb; margin-left:12px;">
-                (DistilBERT • your trained model)
-            </span>
-        </div>
-        <div class="sentiment-area">
-            <textarea id="sentimentInput" placeholder="Paste a hotel review here… e.g. &quot;The room was clean and the staff were incredibly friendly.&quot;" style="min-height:120px;"></textarea>
-            <div class="sentiment-actions" style="justify-content:center;">
-                <button class="btn btn-primary" id="analyzeSentimentBtn">
-                    <i class="fas fa-wand-magic-sparkles"></i> Analyze Sentiment
-                </button>
-                <button class="btn btn-outline" id="clearSentimentBtn">
-                    <i class="fas fa-eraser"></i> Clear
-                </button>
-            </div>
-<div id="sentimentResult" style="display:none; margin-top:20px;">
-    <!-- Main result card -->
-    <div id="resultCard" style="border-radius:16px; padding:24px; background:#fafbfd; border:1px solid #edf0f7; transition: background 0.3s;">
-        <div style="display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
-            <!-- Emoji -->
-            <div id="sentimentEmoji" style="font-size:48px; line-height:1;">😐</div>
-            <div style="flex:1; min-width:200px;">
-                <!-- Sentiment label -->
-                <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
-                    <span id="sentimentTag" class="tag" style="font-size:18px; padding:6px 20px;">Positive</span>
-                    <span id="sentimentConfidence" style="font-size:24px; font-weight:700; color:#131625;">96.4%</span>
+            <div class="tab-pane active" id="tab1">
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-robot"></i> Hotel Review Sentiment Analysis
+                    </div>
+                    <div class="sentiment-area">
+                        <textarea id="sentimentInput" placeholder="Paste a hotel review here… e.g. &quot;The room was clean and the staff were incredibly friendly.&quot;"></textarea>
+                        <div class="sentiment-actions">
+                            <button class="btn btn-primary" id="analyzeSentimentBtn">
+                                <i class="fas fa-wand-magic-sparkles"></i> Analyze Sentiment
+                            </button>
+                            <button class="btn btn-outline" id="clearSentimentBtn">
+                                <i class="fas fa-eraser"></i> Clear
+                            </button>
+                        </div>
+                        <div id="sentimentResult" style="display:none; margin-top:24px;">
+                            <div id="resultCard">
+                                <div style="display:flex; align-items:center; gap:32px; flex-wrap:wrap;">
+                                    <div id="sentimentEmoji" style="font-size:56px; line-height:1;">😐</div>
+                                    <div style="flex:1; min-width:240px;">
+                                        <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+                                            <span id="sentimentTag" class="tag" style="font-size:22px; padding:8px 24px; border-radius:40px; font-weight:600;">Positive</span>
+                                            <span id="sentimentConfidence" style="font-size:28px; font-weight:700; color:#131625;">96.4%</span>
+                                        </div>
+                                        <div id="sentimentDetail" style="font-size:16px; color:#6b78a0; margin-top:6px;">Model predicts "good" sentiment.</div>
+                                    </div>
+                                </div>
+                                <div style="width:100%; margin-top:20px;">
+                                    <div style="display:flex; justify-content:space-between; font-size:14px; color:#8f9abb; margin-bottom:4px;">
+                                        <span>Confidence</span>
+                                        <span id="confidencePercentLabel">96.4%</span>
+                                    </div>
+                                    <div style="height:10px; background:#e8ecf3; border-radius:6px; overflow:hidden; width:100%;">
+                                        <div id="confidenceBar" style="height:100%; width:0%; background:linear-gradient(90deg, #7C3AED, #A78BFA); border-radius:6px; transition: width 0.8s ease;"></div>
+                                    </div>
+                                </div>
+                                <div id="probabilitiesContainer" style="margin-top:20px; display:flex; gap:24px; flex-wrap:wrap; border-top:1px solid #edf0f7; padding-top:20px;">
+                                    <!-- populated by JS -->
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top:16px; font-size:14px; color:#a6b0cc; display:flex; gap:24px; justify-content:center; flex-wrap:wrap; border-top:1px solid #edf0f7; padding-top:16px;">
+                            <span>📊 Model: <strong id="modelStatus">Loading...</strong></span>
+                            <span>⚡ <span style="color:#7C3AED;">Ready</span></span>
+                        </div>
+                    </div>
                 </div>
-                <!-- Detail text -->
-                <div id="sentimentDetail" style="font-size:14px; color:#6b78a0; margin-top:4px;">Model predicts "good" sentiment.</div>
             </div>
-        </div>
-        <!-- Confidence bar -->
-        <div style="width:100%; margin-top:16px;">
-            <div style="display:flex; justify-content:space-between; font-size:12px; color:#8f9abb; margin-bottom:4px;">
-                <span>Confidence</span>
-                <span id="confidencePercentLabel">96.4%</span>
-            </div>
-            <div style="height:8px; background:#e8ecf3; border-radius:6px; overflow:hidden; width:100%;">
-                <div id="confidenceBar" style="height:100%; width:0%; background:linear-gradient(90deg, #7C3AED, #A78BFA); border-radius:6px; transition: width 0.8s ease;"></div>
-            </div>
-        </div>
-        <!-- Probabilities -->
-        <div id="probabilitiesContainer" style="margin-top:16px; display:flex; gap:20px; flex-wrap:wrap; border-top:1px solid #edf0f7; padding-top:16px;">
-            <!-- Will be populated by JS -->
-        </div>
-    </div>
-</div>
-            <div style="margin-top:12px; font-size:12px; color:#a6b0cc; display:flex; gap:20px; justify-content:center; flex-wrap:wrap; border-top:1px solid #edf0f7; padding-top:12px;">
-                <span>📊 Model: <strong id="modelStatus">Loading...</strong></span>
-                <span>⚡ <span style="color:#7C3AED;">Ready</span></span>
-            </div>
-        </div>
-    </div>
-</div>
 
             <!-- ===== TAB 2: TABLEAU ===== -->
             <div class="tab-pane" id="tab2">
@@ -1223,514 +988,495 @@
                     </div>
                     <iframe id="tableauIframe" style="display:none;"
                     src="https://public.tableau.com/views/HotelAnalytics_1682345678/Dashboard1?:embed=true&:showVizHome=no&:host_url=https%3A%2F%2Fpublic.tableau.com%2F&:embed_code_version=3&:tabs=no&:toolbar=yes&:animate_transition=yes&:display_static_image=no&:display_spinner=no&:display_overlay=yes&:display_count=yes&:language=en-US&:origin=viz_share_link">
-                </iframe>
+                    </iframe>
+                </div>
             </div>
-        </div>
 
-        <!-- ===== TAB 3: CHATBOT (with Markdown) ===== -->
-        <div class="tab-pane" id="tab3">
-            <div class="chat-wrapper">
+            <!-- ===== TAB 3: CHATBOT ===== -->
+            <div class="tab-pane" id="tab3">
+                <div class="chat-wrapper">
+                    <div class="chat-history">
+                        <div class="history-header">
+                            <h4><i class="fas fa-clock-rotate-left" style="margin-right:6px;"></i> History</h4>
+                            <button class="clear-btn" id="clearChatHistory"><i class="fas fa-trash-can"></i> Clear</button>
+                        </div>
+                        <div class="history-list" id="historyList">
+                            <div class="history-empty">No conversations yet</div>
+                        </div>
+                        <div style="font-size:11px; color:#a6b0cc; margin-top:10px; border-top:1px solid #edf0f7; padding-top:10px;">
+                            <i class="fas fa-database"></i> 128 stored
+                        </div>
+                    </div>
 
-                <div class="chat-history">
-                    <div class="history-header">
-                        <h4><i class="fas fa-clock-rotate-left" style="margin-right:6px;"></i> History</h4>
-                        <button class="clear-btn" id="clearChatHistory"><i class="fas fa-trash-can"></i> Clear</button>
-                    </div>
-                    <div class="history-list" id="historyList">
-                        <div class="history-empty">No conversations yet</div>
-                    </div>
-                    <div style="font-size:11px; color:#a6b0cc; margin-top:10px; border-top:1px solid #edf0f7; padding-top:10px;">
-                        <i class="fas fa-database"></i> 128 stored
+                    <div class="chat-main">
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="msg bot">
+                                👋 Hi! I'm your hotel recommendation assistant (powered by Gemini + RAG). Ask me about hotels, amenities, or destinations.
+                                <span class="msg-time">just now</span>
+                            </div>
+                        </div>
+                        <div class="chat-input-area">
+                            <input type="text" id="chatInput" placeholder="Ask about hotels, destinations, or recommendations…" />
+                            <button class="btn btn-primary" id="sendChatBtn"><i class="fas fa-paper-plane"></i> Send</button>
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="chat-main">
-                    <div class="chat-messages" id="chatMessages">
+            <!-- ===== TAB 4: FEEDBACK ===== -->
+            <div class="tab-pane" id="tab4">
+                <div class="feedback-container">
+                    <h3 style="margin-bottom:20px; display:flex; align-items:center; gap:10px; color:#131625;">
+                        <i class="fas fa-pen" style="color:#7C3AED;"></i> We value your feedback
+                    </h3>
+                    <form id="feedbackForm" style="display:flex; flex-direction:column; gap:20px; max-width:600px;">
+                        <div style="display:flex; gap:20px; flex-wrap:wrap;">
+                            <div style="flex:1; min-width:200px;">
+                                <label style="display:block; font-weight:500; font-size:14px; margin-bottom:6px; color:#4a5568;">First Name</label>
+                                <input type="text" id="firstName" required style="width:100%; padding:12px 16px; border-radius:12px; border:1.5px solid #edf0f7; font-family:'Inter',sans-serif; font-size:14px; outline:none; transition:0.2s;">
+                            </div>
+                            <div style="flex:1; min-width:200px;">
+                                <label style="display:block; font-weight:500; font-size:14px; margin-bottom:6px; color:#4a5568;">Last Name</label>
+                                <input type="text" id="lastName" required style="width:100%; padding:12px 16px; border-radius:12px; border:1.5px solid #edf0f7; font-family:'Inter',sans-serif; font-size:14px; outline:none; transition:0.2s;">
+                            </div>
+                        </div>
+                        <div>
+                            <label style="display:block; font-weight:500; font-size:14px; margin-bottom:6px; color:#4a5568;">Email</label>
+                            <input type="email" id="feedbackEmail" required style="width:100%; padding:12px 16px; border-radius:12px; border:1.5px solid #edf0f7; font-family:'Inter',sans-serif; font-size:14px; outline:none; transition:0.2s;">
+                        </div>
+                        <div>
+                            <label style="display:block; font-weight:500; font-size:14px; margin-bottom:6px; color:#4a5568;">Your Feedback</label>
+                            <textarea id="feedbackText" required rows="5" style="width:100%; padding:12px 16px; border-radius:12px; border:1.5px solid #edf0f7; font-family:'Inter',sans-serif; font-size:14px; resize:vertical; outline:none; transition:0.2s;"></textarea>
+                        </div>
+                        <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+                            <button type="submit" class="btn btn-primary" style="padding:12px 32px;">
+                                <i class="fas fa-paper-plane"></i> Submit Feedback
+                            </button>
+                            <span id="feedbackStatus" style="font-size:14px; color:#6b78a0;"></span>
+                        </div>
+                    </form>
+                    <div id="sentimentResultFeedback" style="margin-top:12px;"></div>
+                </div>
+            </div>
+
+        </div><!-- /tab-content -->
+    </div><!-- /main -->
+
+
+    <!-- ============ JAVASCRIPT ============ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ---------- DOM refs ----------
+            const navItems = document.querySelectorAll('.nav-item[data-tab]');
+            const panes = {
+                tab1: document.getElementById('tab1'),
+                tab2: document.getElementById('tab2'),
+                tab3: document.getElementById('tab3'),
+                tab4: document.getElementById('tab4'),
+            };
+            const pageTitle = document.getElementById('pageTitle');
+
+            const tabTitles = {
+                tab1: 'Sentiment Analysis',
+                tab2: 'Tableau Dashboard',
+                tab3: 'AI Chatbot',
+                tab4: 'Feedback'
+            };
+
+            // ---------- TAB SWITCHING ----------
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    const tabId = this.dataset.tab;
+                    if (!tabId) return;
+
+                    navItems.forEach(n => n.classList.remove('active'));
+                    this.classList.add('active');
+
+                    Object.keys(panes).forEach(key => {
+                        panes[key].classList.toggle('active', key === tabId);
+                    });
+
+                    pageTitle.textContent = tabTitles[tabId] || tabId;
+
+                    if (tabId === 'tab3') {
+                        setTimeout(() => document.getElementById('chatInput').focus(), 100);
+                    }
+                });
+            });
+
+            // ---------- SENTIMENT PREDICTOR ----------
+            const sentimentInput = document.getElementById('sentimentInput');
+            const analyzeBtn = document.getElementById('analyzeSentimentBtn');
+            const clearSentimentBtn = document.getElementById('clearSentimentBtn');
+            const sentimentResult = document.getElementById('sentimentResult');
+            const sentimentTag = document.getElementById('sentimentTag');
+            const sentimentConfidence = document.getElementById('sentimentConfidence');
+            const sentimentDetail = document.getElementById('sentimentDetail');
+            const confidenceBar = document.getElementById('confidenceBar');
+            const confidencePercentLabel = document.getElementById('confidencePercentLabel');
+            const sentimentEmoji = document.getElementById('sentimentEmoji');
+            const resultCard = document.getElementById('resultCard');
+            const probabilitiesContainer = document.getElementById('probabilitiesContainer');
+            const modelStatus = document.getElementById('modelStatus');
+
+            async function checkModel() {
+                try {
+                    const res = await fetch('/predict', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ review: 'test' })
+                    });
+                    const data = await res.json();
+                    if (data.error) {
+                        modelStatus.textContent = '⚠️ Model error: ' + data.error;
+                    } else if (data.sentiment) {
+                        modelStatus.textContent = '✅ Loaded successfully';
+                    } else {
+                        modelStatus.textContent = '⚠️ Unexpected response';
+                    }
+                } catch {
+                    modelStatus.textContent = '⚠️ Server unreachable';
+                }
+            }
+            checkModel();
+
+            async function runSentiment() {
+                const review = sentimentInput.value.trim();
+                if (!review) {
+                    sentimentResult.style.display = 'none';
+                    return;
+                }
+
+                sentimentResult.style.display = 'block';
+                sentimentTag.textContent = 'Analyzing...';
+                sentimentTag.className = 'tag';
+                sentimentConfidence.textContent = '';
+                sentimentDetail.textContent = '⏳ Sending to model...';
+                confidenceBar.style.width = '0%';
+                confidencePercentLabel.textContent = '0%';
+                sentimentEmoji.textContent = '⏳';
+                resultCard.className = '';
+                probabilitiesContainer.innerHTML = '';
+
+                try {
+                    const response = await fetch('/predict', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ review }),
+                    });
+                    const data = await response.json();
+
+                    if (data.error) {
+                        sentimentTag.textContent = 'Error';
+                        sentimentTag.className = 'tag';
+                        sentimentConfidence.textContent = '';
+                        sentimentDetail.textContent = `⚠️ ${data.error}`;
+                        confidenceBar.style.width = '0%';
+                        confidencePercentLabel.textContent = '0%';
+                        sentimentEmoji.textContent = '❌';
+                        resultCard.className = '';
+                        probabilitiesContainer.innerHTML = '';
+                        return;
+                    }
+
+                    const label = data.sentiment;
+                    const confidence = data.confidence;
+                    const probabilities = data.probabilities || {};
+
+                    let emoji, sentimentClass;
+                    if (label === 'good') {
+                        emoji = '😊';
+                        sentimentClass = 'sentiment-good';
+                    } else if (label === 'bad') {
+                        emoji = '😞';
+                        sentimentClass = 'sentiment-bad';
+                    } else {
+                        emoji = '😐';
+                        sentimentClass = 'sentiment-neutral';
+                    }
+
+                    sentimentEmoji.textContent = emoji;
+                    resultCard.className = sentimentClass;
+
+                    const displayLabel = label.charAt(0).toUpperCase() + label.slice(1);
+                    sentimentTag.textContent = displayLabel;
+                    let tagClass = 'neutral';
+                    if (label === 'good') tagClass = 'positive';
+                    else if (label === 'bad') tagClass = 'negative';
+                    sentimentTag.className = 'tag ' + tagClass;
+
+                    const confPercent = (confidence * 100).toFixed(1);
+                    sentimentConfidence.textContent = confPercent + '%';
+                    confidenceBar.style.width = confPercent + '%';
+                    confidencePercentLabel.textContent = confPercent + '%';
+                    sentimentDetail.textContent = `Model predicts "${label}" sentiment.`;
+
+                    probabilitiesContainer.innerHTML = '';
+                    if (Object.keys(probabilities).length > 0) {
+                        const entries = Object.entries(probabilities);
+                        entries.forEach(([cls, prob]) => {
+                            const pct = (prob * 100).toFixed(1);
+                            const div = document.createElement('div');
+                            div.className = 'prob-bar';
+                            const colorClass = cls === 'good' ? 'fill-good' : cls === 'bad' ? 'fill-bad' :
+                                'fill-neutral';
+                            div.innerHTML = `
+                                <div class="label">
+                                    <span>${cls.charAt(0).toUpperCase() + cls.slice(1)}</span>
+                                    <span>${pct}%</span>
+                                </div>
+                                <div class="track">
+                                    <div class="fill ${colorClass}" style="width:${pct}%;"></div>
+                                </div>
+                            `;
+                            probabilitiesContainer.appendChild(div);
+                        });
+                    }
+
+                } catch (err) {
+                    sentimentTag.textContent = 'Error';
+                    sentimentTag.className = 'tag';
+                    sentimentConfidence.textContent = '';
+                    sentimentDetail.textContent = '⚠️ Could not reach the server.';
+                    confidenceBar.style.width = '0%';
+                    confidencePercentLabel.textContent = '0%';
+                    sentimentEmoji.textContent = '❌';
+                    resultCard.className = '';
+                    probabilitiesContainer.innerHTML = '';
+                }
+            }
+
+            analyzeBtn.addEventListener('click', runSentiment);
+            sentimentInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    runSentiment();
+                }
+            });
+
+            clearSentimentBtn.addEventListener('click', () => {
+                sentimentInput.value = '';
+                sentimentResult.style.display = 'none';
+                sentimentInput.focus();
+            });
+
+            // ---------- TABLEAU ----------
+            const loadTableauBtn = document.getElementById('loadTableauBtn');
+            const tableauPlaceholder = document.getElementById('tableauPlaceholder');
+            const tableauIframe = document.getElementById('tableauIframe');
+
+            loadTableauBtn.addEventListener('click', () => {
+                tableauPlaceholder.style.display = 'none';
+                tableauIframe.style.display = 'block';
+                tableauIframe.src = tableauIframe.src;
+            });
+
+            // ---------- FEEDBACK ----------
+            const feedbackForm = document.getElementById('feedbackForm');
+            const feedbackStatus = document.getElementById('feedbackStatus');
+            const sentimentResultFeedback = document.getElementById('sentimentResultFeedback');
+
+            feedbackForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const firstName = document.getElementById('firstName').value.trim();
+                const lastName = document.getElementById('lastName').value.trim();
+                const email = document.getElementById('feedbackEmail').value.trim();
+                const feedback = document.getElementById('feedbackText').value.trim();
+
+                if (!firstName || !lastName || !email || !feedback) {
+                    feedbackStatus.textContent = '⚠️ All fields are required.';
+                    feedbackStatus.style.color = '#ef4444';
+                    return;
+                }
+
+                feedbackStatus.textContent = '⏳ Sending...';
+                feedbackStatus.style.color = '#7C3AED';
+                sentimentResultFeedback.innerHTML = '';
+
+                try {
+                    const response = await fetch('/feedback', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ first_name: firstName, last_name: lastName, email, feedback }),
+                    });
+                    const data = await response.json();
+
+                    if (data.success) {
+                        feedbackStatus.textContent = '✅ ' + data.message;
+                        feedbackStatus.style.color = '#22c55e';
+                        feedbackForm.reset();
+
+                        if (data.sentiment && data.confidence !== undefined) {
+                            const sentiment = data.sentiment;
+                            const confidence = (data.confidence * 100).toFixed(1);
+                            const emoji = sentiment === 'good' ? '😊' : sentiment === 'bad' ? '😞' : '😐';
+                            const color = sentiment === 'good' ? '#22c55e' : sentiment === 'bad' ? '#ef4444' :
+                                '#f59e0b';
+                            sentimentResultFeedback.innerHTML = `
+                                <div style="padding:12px 16px; border-radius:12px; background:#f8fafc; border:1px solid #edf0f7; display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+                                    <span style="font-size:24px;">${emoji}</span>
+                                    <span style="font-weight:600; color:${color};">${sentiment.charAt(0).toUpperCase() + sentiment.slice(1)}</span>
+                                    <span style="font-size:14px; color:#6b78a0;">Confidence: <strong>${confidence}%</strong></span>
+                                    <span style="font-size:13px; color:#8f9abb;">(feedback sentiment analysis)</span>
+                                </div>
+                            `;
+                        }
+                    } else {
+                        feedbackStatus.textContent = '⚠️ ' + data.message;
+                        feedbackStatus.style.color = '#ef4444';
+                    }
+                } catch (err) {
+                    feedbackStatus.textContent = '⚠️ Could not reach server.';
+                    feedbackStatus.style.color = '#ef4444';
+                    console.error(err);
+                }
+            });
+
+            // ---------- CHATBOT ----------
+            const chatMessages = document.getElementById('chatMessages');
+            const chatInput = document.getElementById('chatInput');
+            const sendBtn = document.getElementById('sendChatBtn');
+            const historyList = document.getElementById('historyList');
+            const clearHistoryBtn = document.getElementById('clearChatHistory');
+
+            let conversation = [];
+
+            function addMessage(role, text, timeOverride) {
+                const time = timeOverride || new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                const msgDiv = document.createElement('div');
+                msgDiv.className = `msg ${role}`;
+
+                if (role === 'bot') {
+                    const html = marked.parse(text);
+                    msgDiv.innerHTML = html + `<span class="msg-time">${time}</span>`;
+                } else {
+                    msgDiv.innerHTML = `${text} <span class="msg-time">${time}</span>`;
+                }
+
+                chatMessages.appendChild(msgDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                conversation.push({ role, text, time });
+                updateHistory();
+            }
+
+            function updateHistory() {
+                historyList.innerHTML = '';
+                if (conversation.length === 0) {
+                    historyList.innerHTML = '<div class="history-empty">No conversations yet</div>';
+                    return;
+                }
+
+                const items = conversation.slice(-10).reverse();
+                items.forEach((entry) => {
+                    const div = document.createElement('div');
+                    div.className = 'history-item';
+                    const icon = entry.role === 'user' ? 'fa-user' : 'fa-robot';
+                    const label = entry.role === 'user' ? 'You' : 'Bot';
+                    const preview = entry.text.length > 30 ? entry.text.slice(0, 28) + '…' : entry.text;
+                    div.innerHTML = `
+                        <i class="fas ${icon} h-icon"></i>
+                        <span class="h-text"><strong>${label}:</strong> ${preview}</span>
+                        <span class="h-time">${entry.time || ''}</span>
+                    `;
+                    div.addEventListener('click', () => {
+                        const msgs = chatMessages.querySelectorAll('.msg');
+                        const targetIdx = conversation.indexOf(entry);
+                        if (targetIdx >= 0 && targetIdx < msgs.length) {
+                            msgs[targetIdx].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            msgs[targetIdx].style.transition = 'background 0.3s';
+                            msgs[targetIdx].style.background = '#ede9fe';
+                            setTimeout(() => {
+                                msgs[targetIdx].style.background = '';
+                            }, 800);
+                        }
+                    });
+                    historyList.appendChild(div);
+                });
+            }
+
+            async function getBotResponse(userMessage) {
+                try {
+                    const response = await fetch('/chat', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ message: userMessage }),
+                    });
+                    const data = await response.json();
+                    if (data.error) {
+                        return `⚠️ Error: ${data.error}`;
+                    }
+                    return data.reply || 'Sorry, I did not understand that.';
+                } catch (err) {
+                    console.error('Chat API error:', err);
+                    return '⚠️ Could not reach the chatbot server. Make sure the Flask app is running.';
+                }
+            }
+
+            async function handleSend() {
+                const text = chatInput.value.trim();
+                if (!text) return;
+
+                addMessage('user', text);
+                chatInput.value = '';
+
+                const thinkingMsg = document.createElement('div');
+                thinkingMsg.className = 'msg bot';
+                thinkingMsg.innerHTML = '⏳ Thinking… <span class="msg-time">now</span>';
+                chatMessages.appendChild(thinkingMsg);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                sendBtn.disabled = true;
+                chatInput.disabled = true;
+
+                try {
+                    const reply = await getBotResponse(text);
+                    if (thinkingMsg.parentNode) thinkingMsg.remove();
+                    addMessage('bot', reply);
+                } catch (err) {
+                    if (thinkingMsg.parentNode) thinkingMsg.remove();
+                    addMessage('bot', '⚠️ Sorry, an error occurred.');
+                } finally {
+                    sendBtn.disabled = false;
+                    chatInput.disabled = false;
+                    chatInput.focus();
+                }
+            }
+
+            sendBtn.addEventListener('click', handleSend);
+            chatInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    handleSend();
+                }
+            });
+
+            clearHistoryBtn.addEventListener('click', () => {
+                if (conversation.length === 0) return;
+                if (confirm('Clear all chat history?')) {
+                    conversation = [];
+                    chatMessages.innerHTML = `
                         <div class="msg bot">
                             👋 Hi! I'm your hotel recommendation assistant (powered by Gemini + RAG). Ask me about hotels, amenities, or destinations.
                             <span class="msg-time">just now</span>
                         </div>
-                    </div>
-                    <div class="chat-input-area">
-                        <input type="text" id="chatInput" placeholder="Ask about hotels, destinations, or recommendations…" />
-                        <button class="btn btn-primary" id="sendChatBtn"><i class="fas fa-paper-plane"></i> Send</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-<!-- ===== TAB 4: FEEDBACK ===== -->
-<div class="tab-pane" id="tab4">
-    <div class="feedback-container" style="height:auto; min-height:500px; padding:30px 40px; background:#ffffff; border-radius:18px; border:1px solid #edf0f7;">
-        <h3 style="margin-bottom:20px; display:flex; align-items:center; gap:10px; color:#131625;">
-            <i class="fas fa-pen" style="color:#7C3AED;"></i> We value your feedback
-        </h3>
-        <form id="feedbackForm" style="display:flex; flex-direction:column; gap:20px; max-width:600px;">
-            <div style="display:flex; gap:20px; flex-wrap:wrap;">
-                <div style="flex:1; min-width:200px;">
-                    <label style="display:block; font-weight:500; font-size:14px; margin-bottom:6px; color:#4a5568;">First Name</label>
-                    <input type="text" id="firstName" required style="width:100%; padding:12px 16px; border-radius:12px; border:1.5px solid #edf0f7; font-family:'Inter',sans-serif; font-size:14px; outline:none; transition:0.2s;">
-                </div>
-                <div style="flex:1; min-width:200px;">
-                    <label style="display:block; font-weight:500; font-size:14px; margin-bottom:6px; color:#4a5568;">Last Name</label>
-                    <input type="text" id="lastName" required style="width:100%; padding:12px 16px; border-radius:12px; border:1.5px solid #edf0f7; font-family:'Inter',sans-serif; font-size:14px; outline:none; transition:0.2s;">
-                </div>
-            </div>
-            <div>
-                <label style="display:block; font-weight:500; font-size:14px; margin-bottom:6px; color:#4a5568;">Email</label>
-                <input type="email" id="feedbackEmail" required style="width:100%; padding:12px 16px; border-radius:12px; border:1.5px solid #edf0f7; font-family:'Inter',sans-serif; font-size:14px; outline:none; transition:0.2s;">
-            </div>
-            <div>
-                <label style="display:block; font-weight:500; font-size:14px; margin-bottom:6px; color:#4a5568;">Your Feedback</label>
-                <textarea id="feedbackText" required rows="5" style="width:100%; padding:12px 16px; border-radius:12px; border:1.5px solid #edf0f7; font-family:'Inter',sans-serif; font-size:14px; resize:vertical; outline:none; transition:0.2s;"></textarea>
-            </div>
-            <div style="display:flex; gap:12px; align-items:center;">
-                <button type="submit" class="btn btn-primary" style="padding:12px 32px;">
-                    <i class="fas fa-paper-plane"></i> Submit Feedback
-                </button>
-                <span id="feedbackStatus" style="font-size:14px; color:#6b78a0;"></span>
-            </div>
-        </form>
-    </div>
-</div>
-
-</div><!-- /tab-content -->
-</div><!-- /main -->
-
-
-<!-- ============ JAVASCRIPT ============ -->
-<script>
-    (function() {
-        'use strict';
-
-        // ---------- DOM refs ----------
-        const navItems = document.querySelectorAll('.nav-item[data-tab]');
-        const panes = {
-            tab1: document.getElementById('tab1'),
-            tab2: document.getElementById('tab2'),
-            tab3: document.getElementById('tab3'),
-            tab4: document.getElementById('tab4'),
-        };
-        const pageTitle = document.getElementById('pageTitle');
-
-        const tabTitles = {
-            tab1: 'ML Model Scores',
-            tab2: 'Tableau Dashboard',
-            tab3: 'AI Chatbot',
-            tab4: 'Feedback'
-        };
-
-        // ---------- TAB SWITCHING ----------
-        navItems.forEach(item => {
-            item.addEventListener('click', function(e) {
-                const tabId = this.dataset.tab;
-                if (!tabId) return;
-
-                navItems.forEach(n => n.classList.remove('active'));
-                this.classList.add('active');
-
-                Object.keys(panes).forEach(key => {
-                    panes[key].classList.toggle('active', key === tabId);
-                });
-
-                pageTitle.textContent = tabTitles[tabId] || tabId;
-
-                if (tabId === 'tab3') {
-                    setTimeout(() => document.getElementById('chatInput').focus(), 100);
+                    `;
+                    updateHistory();
                 }
             });
-        });
 
-// ---------- SENTIMENT PREDICTOR (DistilBERT via Flask) ----------
-const sentimentInput = document.getElementById('sentimentInput');
-const analyzeBtn = document.getElementById('analyzeSentimentBtn');
-const clearSentimentBtn = document.getElementById('clearSentimentBtn');
-const sentimentResult = document.getElementById('sentimentResult');
-const sentimentTag = document.getElementById('sentimentTag');
-const sentimentConfidence = document.getElementById('sentimentConfidence');
-const sentimentDetail = document.getElementById('sentimentDetail');
-const confidenceBar = document.getElementById('confidenceBar');
-const confidencePercentLabel = document.getElementById('confidencePercentLabel');
-const sentimentEmoji = document.getElementById('sentimentEmoji');
-const resultCard = document.getElementById('resultCard');
-const probabilitiesContainer = document.getElementById('probabilitiesContainer');
-const modelStatus = document.getElementById('modelStatus');
-
-async function checkModel() {
-    try {
-        const res = await fetch('/predict', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ review: 'test' })
-        });
-        const data = await res.json();
-        if (data.error) {
-            modelStatus.textContent = '⚠️ Model error: ' + data.error;
-        } else if (data.sentiment) {
-            modelStatus.textContent = '✅ Loaded successfully';
-        } else {
-            modelStatus.textContent = '⚠️ Unexpected response';
-        }
-    } catch {
-        modelStatus.textContent = '⚠️ Server unreachable';
-    }
-}
-checkModel();
-
-async function runSentiment() {
-    const review = sentimentInput.value.trim();
-    if (!review) {
-        sentimentResult.style.display = 'none';
-        return;
-    }
-
-    // Show loading state
-    sentimentResult.style.display = 'block';
-    sentimentTag.textContent = 'Analyzing...';
-    sentimentTag.className = 'tag';
-    sentimentConfidence.textContent = '';
-    sentimentDetail.textContent = '⏳ Sending to model...';
-    confidenceBar.style.width = '0%';
-    confidencePercentLabel.textContent = '0%';
-    sentimentEmoji.textContent = '⏳';
-    resultCard.className = '';
-    probabilitiesContainer.innerHTML = '';
-
-    try {
-        const response = await fetch('/predict', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ review }),
-        });
-        const data = await response.json();
-
-        if (data.error) {
-            sentimentTag.textContent = 'Error';
-            sentimentTag.className = 'tag';
-            sentimentConfidence.textContent = '';
-            sentimentDetail.textContent = `⚠️ ${data.error}`;
-            confidenceBar.style.width = '0%';
-            confidencePercentLabel.textContent = '0%';
-            sentimentEmoji.textContent = '❌';
-            resultCard.className = '';
-            probabilitiesContainer.innerHTML = '';
-            return;
-        }
-
-        const label = data.sentiment;  // 'good' or 'bad'
-        const confidence = data.confidence; // 0-1
-        const probabilities = data.probabilities || {};
-
-        // Determine emoji and CSS class
-        let emoji, sentimentClass;
-        if (label === 'good') {
-            emoji = '😊';
-            sentimentClass = 'sentiment-good';
-        } else if (label === 'bad') {
-            emoji = '😞';
-            sentimentClass = 'sentiment-bad';
-        } else {
-            emoji = '😐';
-            sentimentClass = 'sentiment-neutral';
-        }
-
-        // Update main elements
-        sentimentEmoji.textContent = emoji;
-        resultCard.className = sentimentClass;
-
-        const displayLabel = label.charAt(0).toUpperCase() + label.slice(1);
-        sentimentTag.textContent = displayLabel;
-        let tagClass = 'neutral';
-        if (label === 'good') tagClass = 'positive';
-        else if (label === 'bad') tagClass = 'negative';
-        sentimentTag.className = 'tag ' + tagClass;
-
-        const confPercent = (confidence * 100).toFixed(1);
-        sentimentConfidence.textContent = confPercent + '%';
-        confidenceBar.style.width = confPercent + '%';
-        confidencePercentLabel.textContent = confPercent + '%';
-        sentimentDetail.textContent = `Model predicts "${label}" sentiment.`;
-
-        // Render probabilities
-        probabilitiesContainer.innerHTML = '';
-        if (Object.keys(probabilities).length > 0) {
-            const entries = Object.entries(probabilities);
-            entries.forEach(([cls, prob]) => {
-                const pct = (prob * 100).toFixed(1);
-                const div = document.createElement('div');
-                div.className = 'prob-bar';
-                const colorClass = cls === 'good' ? 'fill-good' : cls === 'bad' ? 'fill-bad' : 'fill-neutral';
-                div.innerHTML = `
-                    <div class="label">
-                        <span>${cls.charAt(0).toUpperCase() + cls.slice(1)}</span>
-                        <span>${pct}%</span>
-                    </div>
-                    <div class="track">
-                        <div class="fill ${colorClass}" style="width:${pct}%;"></div>
-                    </div>
-                `;
-                probabilitiesContainer.appendChild(div);
-            });
-        }
-
-    } catch (err) {
-        sentimentTag.textContent = 'Error';
-        sentimentTag.className = 'tag';
-        sentimentConfidence.textContent = '';
-        sentimentDetail.textContent = '⚠️ Could not reach the server.';
-        confidenceBar.style.width = '0%';
-        confidencePercentLabel.textContent = '0%';
-        sentimentEmoji.textContent = '❌';
-        resultCard.className = '';
-        probabilitiesContainer.innerHTML = '';
-    }
-}
-
-// Event listeners
-analyzeBtn.addEventListener('click', runSentiment);
-sentimentInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        runSentiment();
-    }
-});
-
-clearSentimentBtn.addEventListener('click', () => {
-    sentimentInput.value = '';
-    sentimentResult.style.display = 'none';
-    sentimentInput.focus();
-});
-
-        // ---------- TABLEAU ----------
-        const loadTableauBtn = document.getElementById('loadTableauBtn');
-        const tableauPlaceholder = document.getElementById('tableauPlaceholder');
-        const tableauIframe = document.getElementById('tableauIframe');
-
-        loadTableauBtn.addEventListener('click', () => {
-            tableauPlaceholder.style.display = 'none';
-            tableauIframe.style.display = 'block';
-            tableauIframe.src = tableauIframe.src;
-        });
-
-				// ---------- FEEDBACK FORM SUBMISSION ----------
-		const feedbackForm = document.getElementById('feedbackForm');
-		const feedbackStatus = document.getElementById('feedbackStatus');
-
-		feedbackForm.addEventListener('submit', async (e) => {
-			e.preventDefault();
-
-			const firstName = document.getElementById('firstName').value.trim();
-			const lastName = document.getElementById('lastName').value.trim();
-			const email = document.getElementById('feedbackEmail').value.trim();
-			const feedback = document.getElementById('feedbackText').value.trim();
-
-			if (!firstName || !lastName || !email || !feedback) {
-				feedbackStatus.textContent = '⚠️ All fields are required.';
-				feedbackStatus.style.color = '#ef4444';
-				return;
-			}
-
-			feedbackStatus.textContent = '⏳ Sending...';
-			feedbackStatus.style.color = '#7C3AED';
-
-			try {
-				const response = await fetch('/feedback', {
-				    method: 'POST',
-				    headers: { 'Content-Type': 'application/json' },
-				    body: JSON.stringify({ first_name: firstName, last_name: lastName, email, feedback }),
-				});
-				const data = await response.json();
-
-				if (data.success) {
-				    feedbackStatus.textContent = '✅ ' + data.message;
-				    feedbackStatus.style.color = '#22c55e';
-				    feedbackForm.reset();
-				} else {
-				    feedbackStatus.textContent = '⚠️ ' + data.message;
-				    feedbackStatus.style.color = '#ef4444';
-				}
-			} catch (err) {
-				feedbackStatus.textContent = '⚠️ Could not reach server.';
-				feedbackStatus.style.color = '#ef4444';
-				console.error(err);
-			}
-		});
-
-        // ---------- CHATBOT (API integration with Markdown) ----------
-        const chatMessages = document.getElementById('chatMessages');
-        const chatInput = document.getElementById('chatInput');
-        const sendBtn = document.getElementById('sendChatBtn');
-        const historyList = document.getElementById('historyList');
-        const clearHistoryBtn = document.getElementById('clearChatHistory');
-
-        let conversation = [];
-
-        // ---------- helper: add a message with optional Markdown rendering for bot ----------
-        function addMessage(role, text, timeOverride) {
-            const time = timeOverride || new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            const msgDiv = document.createElement('div');
-            msgDiv.className = `msg ${role}`;
-
-            if (role === 'bot') {
-                // Render Markdown using 'marked' library
-                const html = marked.parse(text);
-                msgDiv.innerHTML = html + `<span class="msg-time">${time}</span>`;
-            } else {
-                msgDiv.innerHTML = `${text} <span class="msg-time">${time}</span>`;
-            }
-
-            chatMessages.appendChild(msgDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-
-            conversation.push({ role, text, time });
+            // ---------- INIT ----------
+            pageTitle.textContent = tabTitles.tab1;
             updateHistory();
-        }
 
-        // ---------- update history list ----------
-        function updateHistory() {
-            historyList.innerHTML = '';
-            if (conversation.length === 0) {
-                historyList.innerHTML = '<div class="history-empty">No conversations yet</div>';
-                return;
-            }
+            console.log('🏨 NextGen Recommender · Fully loaded');
+            console.log('💡 Ensure Flask server is running on port 5000');
 
-            const items = conversation.slice(-10).reverse();
-            items.forEach((entry) => {
-                const div = document.createElement('div');
-                div.className = 'history-item';
-                const icon = entry.role === 'user' ? 'fa-user' : 'fa-robot';
-                const label = entry.role === 'user' ? 'You' : 'Bot';
-                const preview = entry.text.length > 30 ? entry.text.slice(0, 28) + '…' : entry.text;
-                div.innerHTML = `
-                    <i class="fas ${icon} h-icon"></i>
-                    <span class="h-text"><strong>${label}:</strong> ${preview}</span>
-                    <span class="h-time">${entry.time || ''}</span>
-                `;
-                div.addEventListener('click', () => {
-                    const msgs = chatMessages.querySelectorAll('.msg');
-                    const targetIdx = conversation.indexOf(entry);
-                    if (targetIdx >= 0 && targetIdx < msgs.length) {
-                        msgs[targetIdx].scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        msgs[targetIdx].style.transition = 'background 0.3s';
-                        msgs[targetIdx].style.background = '#ede9fe';
-                        setTimeout(() => {
-                            msgs[targetIdx].style.background = '';
-                        }, 800);
-                    }
-                });
-                historyList.appendChild(div);
-            });
-        }
-
-        // ---------- call the backend API ----------
-        async function getBotResponse(userMessage) {
-            try {
-                const response = await fetch('/chat', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: userMessage }),
-                });
-                const data = await response.json();
-                if (data.error) {
-                    return `⚠️ Error: ${data.error}`;
-                }
-                return data.reply || 'Sorry, I did not understand that.';
-            } catch (err) {
-                console.error('Chat API error:', err);
-                return '⚠️ Could not reach the chatbot server. Make sure the Flask app is running.';
-            }
-        }
-
-        // ---------- handle sending a message ----------
-        async function handleSend() {
-            const text = chatInput.value.trim();
-            if (!text) return;
-
-            // Add user message immediately
-            addMessage('user', text);
-            chatInput.value = '';
-
-            // Add a "thinking" message (temporary)
-            const thinkingMsg = document.createElement('div');
-            thinkingMsg.className = 'msg bot';
-            thinkingMsg.innerHTML = '⏳ Thinking… <span class="msg-time">now</span>';
-            chatMessages.appendChild(thinkingMsg);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-
-            sendBtn.disabled = true;
-            chatInput.disabled = true;
-
-            try {
-                const reply = await getBotResponse(text);
-                // Remove thinking message
-                if (thinkingMsg.parentNode) thinkingMsg.remove();
-                addMessage('bot', reply);
-            } catch (err) {
-                if (thinkingMsg.parentNode) thinkingMsg.remove();
-                addMessage('bot', '⚠️ Sorry, an error occurred.');
-            } finally {
-                sendBtn.disabled = false;
-                chatInput.disabled = false;
-                chatInput.focus();
-            }
-        }
-
-        // ---------- event listeners ----------
-        sendBtn.addEventListener('click', handleSend);
-        chatInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                handleSend();
-            }
-        });
-
-        clearHistoryBtn.addEventListener('click', () => {
-            if (conversation.length === 0) return;
-            if (confirm('Clear all chat history?')) {
-                conversation = [];
-                chatMessages.innerHTML = `
-                    <div class="msg bot">
-                        👋 Hi! I'm your hotel recommendation assistant (powered by Gemini + RAG). Ask me about hotels, amenities, or destinations.
-                        <span class="msg-time">just now</span>
-                    </div>
-                `;
-                updateHistory();
-            }
-        });
-
-        // ---------- GLOBAL SEARCH (redirects to chatbot) ----------
-        const globalSearch = document.getElementById('globalSearch');
-        globalSearch.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                const query = globalSearch.value.trim();
-                if (!query) return;
-                const chatTab = document.querySelector('.nav-item[data-tab="tab3"]');
-                if (chatTab) chatTab.click();
-                setTimeout(() => {
-                    chatInput.value = query;
-                    handleSend();
-                }, 300);
-                globalSearch.value = '';
-            }
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if ((e.ctrlKey || e.metaKey) && e.key === '/') {
-                e.preventDefault();
-                globalSearch.focus();
-            }
-        });
-
-        // ---------- INIT ----------
-        pageTitle.textContent = tabTitles.tab1;
-        updateHistory();
-
-        console.log('🏨 Hotel Recommender · Purple Edition · Markdown rendering enabled');
-        console.log('💡 Ensure Flask server is running on port 5000');
-
-    })();
-</script>
+        })();
+    </script>
 
 </body>
 </html>
