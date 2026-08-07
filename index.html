@@ -12,6 +12,89 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <style>
+        /* ---------- CSS Variables for themes ---------- */
+        :root {
+            --bg-primary: #f5f7fb;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-input: #fafbfd;
+            --bg-sidebar: #ffffff;
+            --bg-sidebar-hover: #f5f3ff;
+            --bg-sidebar-active: #ede9fe;
+            --bg-profile: #f8f9fc;
+            --bg-status: #f5f3ff;
+            --bg-result: #fafbfd;
+            --bg-placeholder: #fafbfd;
+            --text-primary: #1e1e2f;
+            --text-secondary: #131625;
+            --text-muted: #6b78a0;
+            --text-light: #8f9abb;
+            --text-nav: #4a5568;
+            --text-nav-active: #5B21B6;
+            --border-color: #edf0f7;
+            --border-light: #eef0f5;
+            --shadow-color: rgba(0, 0, 0, 0.04);
+            --shadow-hover: rgba(0, 0, 0, 0.08);
+            --accent: #7C3AED;
+            --accent-hover: #6D28D9;
+            --accent-light: #ede9fe;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --good-bg: #f0fdf4;
+            --good-border: #86efac;
+            --bad-bg: #fef2f2;
+            --bad-border: #fca5a5;
+            --neutral-bg: #fffbeb;
+            --neutral-border: #fcd34d;
+            --scrollbar-track: #eef0f5;
+            --scrollbar-thumb: #c0c6d6;
+            --msg-user-bg: #7C3AED;
+            --msg-user-text: #fff;
+            --msg-bot-bg: #f5f7fb;
+            --msg-bot-text: #1e1e2f;
+        }
+
+        /* Dark theme overrides */
+        body.dark-mode {
+            --bg-primary: #121212;
+            --bg-secondary: #1e1e1e;
+            --bg-card: #2d2d2d;
+            --bg-input: #2a2a2a;
+            --bg-sidebar: #1a1a1a;
+            --bg-sidebar-hover: #2d2d3d;
+            --bg-sidebar-active: #2d1f4a;
+            --bg-profile: #2a2a2a;
+            --bg-status: #2d2d3d;
+            --bg-result: #2a2a2a;
+            --bg-placeholder: #2a2a2a;
+            --text-primary: #e8e8e8;
+            --text-secondary: #f0f0f0;
+            --text-muted: #a0a0b0;
+            --text-light: #8888aa;
+            --text-nav: #b0b0c0;
+            --text-nav-active: #b8a5ff;
+            --border-color: #3a3a4a;
+            --border-light: #3a3a4a;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --shadow-hover: rgba(0, 0, 0, 0.5);
+            --accent: #9b7bf2;
+            --accent-hover: #b08aff;
+            --accent-light: #3a2a5a;
+            --good-bg: #1a3a2a;
+            --good-border: #2a6a4a;
+            --bad-bg: #3a1a1a;
+            --bad-border: #6a2a2a;
+            --neutral-bg: #3a3a1a;
+            --neutral-border: #6a6a2a;
+            --scrollbar-track: #2a2a2a;
+            --scrollbar-thumb: #4a4a5a;
+            --msg-user-bg: #7C3AED;
+            --msg-user-text: #fff;
+            --msg-bot-bg: #2d2d3d;
+            --msg-bot-text: #e8e8e8;
+        }
+
         /* ---------- RESET / BASE ---------- */
         *,
         *::before,
@@ -23,11 +106,12 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #f5f7fb;
-            color: #1e1e2f;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             display: flex;
             height: 100vh;
             overflow: hidden;
+            transition: background 0.3s, color 0.3s;
         }
 
         ::-webkit-scrollbar {
@@ -35,11 +119,11 @@
             height: 5px;
         }
         ::-webkit-scrollbar-track {
-            background: #eef0f5;
+            background: var(--scrollbar-track);
             border-radius: 8px;
         }
         ::-webkit-scrollbar-thumb {
-            background: #c0c6d6;
+            background: var(--scrollbar-thumb);
             border-radius: 8px;
         }
         ::-webkit-scrollbar-thumb:hover {
@@ -50,16 +134,17 @@
         .sidebar {
             width: 260px;
             min-width: 260px;
-            background: #ffffff;
-            color: #1e1e2f;
+            background: var(--bg-sidebar);
+            color: var(--text-primary);
             display: flex;
             flex-direction: column;
             padding: 24px 16px 20px;
             position: relative;
             overflow-y: auto;
             flex-shrink: 0;
-            border-right: 1px solid #edf0f7;
-            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.02);
+            border-right: 1px solid var(--border-color);
+            box-shadow: 4px 0 20px var(--shadow-color);
+            transition: background 0.3s, border-color 0.3s;
         }
 
         .sidebar-brand {
@@ -71,7 +156,7 @@
         }
 
         .sidebar-brand .brand-icon {
-            background: #7C3AED;
+            background: var(--accent);
             width: 40px;
             height: 40px;
             border-radius: 12px;
@@ -87,46 +172,46 @@
         .sidebar-brand h2 {
             font-size: 20px;
             font-weight: 700;
-            color: #131625;
+            color: var(--text-secondary);
             letter-spacing: -0.4px;
         }
         .sidebar-brand h2 span {
-            color: #7C3AED;
+            color: var(--accent);
         }
 
         .sidebar-brand small {
             font-size: 11px;
             font-weight: 400;
-            color: #6b78a0;
+            color: var(--text-muted);
             display: block;
             margin-top: 1px;
             letter-spacing: 0.2px;
         }
 
         .sidebar-profile {
-            background: #f8f9fc;
+            background: var(--bg-profile);
             border-radius: 14px;
             padding: 14px 16px;
             display: flex;
             align-items: center;
             gap: 14px;
             margin-bottom: 24px;
-            border: 1px solid #edf0f7;
-            transition: 0.2s;
+            border: 1px solid var(--border-color);
+            transition: 0.2s, background 0.3s, border-color 0.3s;
         }
         .sidebar-profile:hover {
-            border-color: #d5d9e6;
+            border-color: var(--border-light);
         }
         .sidebar-profile .avatar {
             width: 44px;
             height: 44px;
             border-radius: 50%;
-            background: #ede9fe;
+            background: var(--accent-light);
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 600;
-            color: #7C3AED;
+            color: var(--accent);
             font-size: 16px;
             flex-shrink: 0;
         }
@@ -136,15 +221,15 @@
         }
         .sidebar-profile .user-details .name {
             font-weight: 600;
-            color: #131625;
+            color: var(--text-secondary);
             font-size: 14px;
         }
         .sidebar-profile .user-details .role {
             font-size: 12px;
-            color: #6b78a0;
+            color: var(--text-muted);
         }
         .sidebar-profile .status-badge {
-            background: #22c55e;
+            background: var(--success);
             width: 8px;
             height: 8px;
             border-radius: 50%;
@@ -160,7 +245,7 @@
             font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 0.8px;
-            color: #8f9abb;
+            color: var(--text-light);
             padding: 12px 10px 6px;
             font-weight: 600;
         }
@@ -175,7 +260,7 @@
             transition: 0.2s ease;
             font-size: 14px;
             font-weight: 500;
-            color: #4a5568;
+            color: var(--text-nav);
             text-decoration: none;
             margin-bottom: 2px;
             position: relative;
@@ -185,29 +270,29 @@
             width: 22px;
             font-size: 16px;
             text-align: center;
-            color: #9aa4be;
+            color: var(--text-light);
             transition: 0.2s;
         }
 
         .sidebar-nav .nav-item:hover {
-            background: #f5f3ff;
-            color: #131625;
+            background: var(--bg-sidebar-hover);
+            color: var(--text-secondary);
         }
         .sidebar-nav .nav-item:hover i {
-            color: #7C3AED;
+            color: var(--accent);
         }
 
         .sidebar-nav .nav-item.active {
-            background: #ede9fe;
-            color: #5B21B6;
+            background: var(--bg-sidebar-active);
+            color: var(--text-nav-active);
         }
         .sidebar-nav .nav-item.active i {
-            color: #7C3AED;
+            color: var(--accent);
         }
 
         .sidebar-nav .nav-item .badge {
             margin-left: auto;
-            background: #7C3AED;
+            background: var(--accent);
             color: #fff;
             font-size: 10px;
             padding: 2px 10px;
@@ -218,13 +303,13 @@
         .sidebar-stats {
             margin-top: 16px;
             padding: 16px 10px;
-            border-top: 1px solid #edf0f7;
+            border-top: 1px solid var(--border-color);
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
         }
         .sidebar-stats .stat {
-            background: #f8f9fc;
+            background: var(--bg-profile);
             border-radius: 10px;
             padding: 10px 12px;
             text-align: center;
@@ -232,21 +317,21 @@
         .sidebar-stats .stat .num {
             font-weight: 700;
             font-size: 16px;
-            color: #131625;
+            color: var(--text-secondary);
         }
         .sidebar-stats .stat .label {
             font-size: 10px;
-            color: #8f9abb;
+            color: var(--text-light);
             text-transform: uppercase;
             letter-spacing: 0.3px;
         }
 
         .sidebar-footer {
-            border-top: 1px solid #edf0f7;
+            border-top: 1px solid var(--border-color);
             padding-top: 16px;
             margin-top: 8px;
             font-size: 12px;
-            color: #6b78a0;
+            color: var(--text-muted);
             display: flex;
             align-items: center;
             gap: 8px;
@@ -259,32 +344,34 @@
             display: flex;
             flex-direction: column;
             min-width: 0;
-            background: #f5f7fb;
+            background: var(--bg-primary);
+            transition: background 0.3s;
         }
 
         .main-header {
-            background: #ffffff;
+            background: var(--bg-secondary);
             padding: 16px 32px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid #edf0f7;
+            border-bottom: 1px solid var(--border-color);
             flex-shrink: 0;
             flex-wrap: wrap;
             gap: 12px;
+            transition: background 0.3s, border-color 0.3s;
         }
 
         .main-header .page-title {
             font-size: 20px;
             font-weight: 700;
             letter-spacing: -0.3px;
-            color: #131625;
+            color: var(--text-secondary);
             display: flex;
             align-items: center;
             gap: 10px;
         }
         .main-header .page-title i {
-            color: #7C3AED;
+            color: var(--accent);
             font-size: 20px;
         }
 
@@ -295,8 +382,8 @@
         }
 
         .main-header .header-actions .status-chip {
-            background: #f5f3ff;
-            color: #5B21B6;
+            background: var(--bg-status);
+            color: var(--text-nav-active);
             font-size: 12px;
             font-weight: 600;
             padding: 6px 16px;
@@ -305,14 +392,32 @@
             align-items: center;
             gap: 6px;
             white-space: nowrap;
+            transition: background 0.3s;
         }
         .main-header .header-actions .status-chip .dot {
             width: 7px;
             height: 7px;
             border-radius: 50%;
-            background: #22c55e;
+            background: var(--success);
             display: inline-block;
             animation: pulse-dot 1.8s infinite;
+        }
+
+        .dark-toggle {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 20px;
+            cursor: pointer;
+            transition: 0.2s;
+            padding: 6px 10px;
+            border-radius: 40px;
+            background: var(--bg-profile);
+            border: 1px solid var(--border-color);
+        }
+        .dark-toggle:hover {
+            color: var(--accent);
+            border-color: var(--accent);
         }
 
         @keyframes pulse-dot {
@@ -355,11 +460,11 @@
             margin: 0 auto;
             padding: 32px 40px;
             min-height: 0;
-            background: #ffffff;
+            background: var(--bg-card);
             border-radius: 18px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-            border: 1px solid #edf0f7;
-            transition: 0.2s;
+            box-shadow: 0 4px 16px var(--shadow-color);
+            border: 1px solid var(--border-color);
+            transition: 0.2s, background 0.3s, border-color 0.3s;
         }
 
         #tab1 .sentiment-area {
@@ -375,24 +480,24 @@
             resize: vertical;
             padding: 16px 20px;
             border-radius: 14px;
-            border: 1.5px solid #edf0f7;
+            border: 1.5px solid var(--border-color);
             font-family: 'Inter', sans-serif;
             font-size: 16px;
             outline: none;
-            background: #fafbfd;
-            color: #1e1e2f;
-            transition: 0.2s;
+            background: var(--bg-input);
+            color: var(--text-primary);
+            transition: 0.2s, background 0.3s, border-color 0.3s, color 0.3s;
         }
         #tab1 #sentimentInput:focus {
-            border-color: #7C3AED;
-            background: #fff;
+            border-color: var(--accent);
+            background: var(--bg-secondary);
             box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.08);
         }
 
         .card-title {
             font-size: 20px;
             font-weight: 600;
-            color: #131625;
+            color: var(--text-secondary);
             margin-bottom: 18px;
             display: flex;
             align-items: center;
@@ -400,7 +505,7 @@
             justify-content: center;
         }
         .card-title i {
-            color: #7C3AED;
+            color: var(--accent);
             font-size: 24px;
         }
 
@@ -424,47 +529,48 @@
             cursor: pointer;
             transition: 0.2s;
             font-family: 'Inter', sans-serif;
-            background: #f5f7fb;
-            color: #1e1e2f;
+            background: var(--bg-profile);
+            color: var(--text-primary);
         }
         .btn-primary {
-            background: #7C3AED;
+            background: var(--accent);
             color: #fff;
         }
         .btn-primary:hover {
-            background: #6D28D9;
+            background: var(--accent-hover);
             transform: translateY(-1px);
             box-shadow: 0 6px 20px rgba(124, 58, 237, 0.25);
         }
         .btn-outline {
             background: transparent;
-            border: 1.5px solid #edf0f7;
+            border: 1.5px solid var(--border-color);
+            color: var(--text-primary);
         }
         .btn-outline:hover {
-            border-color: #7C3AED;
-            color: #7C3AED;
-            background: #f5f3ff;
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--bg-sidebar-hover);
         }
 
         /* ---------- Result card ---------- */
         #resultCard {
             border-radius: 16px;
             padding: 28px 32px;
-            background: #fafbfd;
-            border: 1px solid #edf0f7;
-            transition: background 0.3s;
+            background: var(--bg-result);
+            border: 1px solid var(--border-color);
+            transition: background 0.3s, border-color 0.3s;
         }
         #resultCard.sentiment-good {
-            background: #f0fdf4;
-            border-color: #86efac;
+            background: var(--good-bg);
+            border-color: var(--good-border);
         }
         #resultCard.sentiment-bad {
-            background: #fef2f2;
-            border-color: #fca5a5;
+            background: var(--bad-bg);
+            border-color: var(--bad-border);
         }
         #resultCard.sentiment-neutral {
-            background: #fffbeb;
-            border-color: #fcd34d;
+            background: var(--neutral-bg);
+            border-color: var(--neutral-border);
         }
 
         .prob-bar {
@@ -473,13 +579,13 @@
         }
         .prob-bar .label {
             font-size: 12px;
-            color: #6b78a0;
+            color: var(--text-muted);
             display: flex;
             justify-content: space-between;
         }
         .prob-bar .track {
             height: 4px;
-            background: #e8ecf3;
+            background: var(--border-color);
             border-radius: 4px;
             overflow: hidden;
             margin-top: 2px;
@@ -489,20 +595,21 @@
             border-radius: 4px;
             transition: width 0.6s ease;
         }
-        .fill-good { background: #22c55e; }
-        .fill-bad { background: #ef4444; }
-        .fill-neutral { background: #f59e0b; }
+        .fill-good { background: var(--success); }
+        .fill-bad { background: var(--danger); }
+        .fill-neutral { background: var(--warning); }
 
         /* ---------- TAB 2: TABLEAU ---------- */
         .tableau-container {
-            background: #ffffff;
+            background: var(--bg-card);
             border-radius: 18px;
-            border: 1px solid #edf0f7;
+            border: 1px solid var(--border-color);
             overflow: hidden;
             height: 100%;
             flex: 1;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 16px var(--shadow-color);
             position: relative;
+            transition: background 0.3s, border-color 0.3s;
         }
         .tableau-container iframe {
             width: 100%;
@@ -515,13 +622,13 @@
             align-items: center;
             justify-content: center;
             height: 100%;
-            color: #8f9abb;
+            color: var(--text-light);
             gap: 12px;
-            background: #fafbfd;
+            background: var(--bg-placeholder);
         }
         .tableau-placeholder i {
             font-size: 48px;
-            color: #c8cedb;
+            color: var(--text-light);
         }
         .tableau-placeholder p {
             font-size: 14px;
@@ -537,24 +644,26 @@
         .chat-wrapper {
             display: flex;
             gap: 0;
-            background: #ffffff;
+            background: var(--bg-card);
             border-radius: 18px;
-            border: 1px solid #edf0f7;
+            border: 1px solid var(--border-color);
             overflow: hidden;
             flex: 1;
             min-height: 0;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 16px var(--shadow-color);
+            transition: background 0.3s, border-color 0.3s;
         }
 
         .chat-history {
             width: 220px;
             min-width: 200px;
-            background: #fafbfd;
-            border-right: 1px solid #edf0f7;
+            background: var(--bg-profile);
+            border-right: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
             padding: 18px 14px;
             overflow-y: auto;
+            transition: background 0.3s, border-color 0.3s;
         }
         .chat-history .history-header {
             display: flex;
@@ -565,13 +674,13 @@
         .chat-history .history-header h4 {
             font-size: 13px;
             font-weight: 600;
-            color: #131625;
+            color: var(--text-secondary);
             letter-spacing: 0.2px;
         }
         .chat-history .history-header .clear-btn {
             background: none;
             border: none;
-            color: #8f9abb;
+            color: var(--text-light);
             font-size: 13px;
             cursor: pointer;
             font-weight: 500;
@@ -580,8 +689,8 @@
             border-radius: 6px;
         }
         .chat-history .history-header .clear-btn:hover {
-            color: #ef4444;
-            background: #fee2e2;
+            color: var(--danger);
+            background: var(--bad-bg);
         }
 
         .history-list {
@@ -594,22 +703,22 @@
         .history-item {
             padding: 10px 12px;
             border-radius: 10px;
-            background: #ffffff;
-            border: 1px solid #edf0f7;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
             cursor: pointer;
-            transition: 0.15s;
+            transition: 0.15s, background 0.3s, border-color 0.3s;
             font-size: 13px;
-            color: #1e1e2f;
+            color: var(--text-primary);
             display: flex;
             align-items: center;
             gap: 10px;
         }
         .history-item:hover {
-            border-color: #c8d0e8;
-            background: #fafbff;
+            border-color: var(--accent);
+            background: var(--bg-sidebar-hover);
         }
         .history-item .h-icon {
-            color: #8f9abb;
+            color: var(--text-light);
             font-size: 12px;
         }
         .history-item .h-text {
@@ -620,11 +729,11 @@
         }
         .history-item .h-time {
             font-size: 10px;
-            color: #a6b0cc;
+            color: var(--text-light);
             white-space: nowrap;
         }
         .history-empty {
-            color: #a6b0cc;
+            color: var(--text-light);
             font-size: 13px;
             text-align: center;
             padding: 30px 0;
@@ -634,8 +743,9 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            background: #ffffff;
+            background: var(--bg-card);
             min-width: 0;
+            transition: background 0.3s;
         }
 
         .chat-messages {
@@ -658,14 +768,14 @@
         }
         .msg.user {
             align-self: flex-end;
-            background: #7C3AED;
-            color: #fff;
+            background: var(--msg-user-bg);
+            color: var(--msg-user-text);
             border-bottom-right-radius: 4px;
         }
         .msg.bot {
             align-self: flex-start;
-            background: #f5f7fb;
-            color: #1e1e2f;
+            background: var(--msg-bot-bg);
+            color: var(--msg-bot-text);
             border-bottom-left-radius: 4px;
         }
         .msg.bot h1, .msg.bot h2, .msg.bot h3, .msg.bot h4 {
@@ -674,7 +784,7 @@
         }
         .msg.bot h3 {
             font-size: 1.1em;
-            color: #5B21B6;
+            color: var(--accent);
         }
         .msg.bot ul, .msg.bot ol {
             padding-left: 20px;
@@ -688,11 +798,11 @@
         }
         .msg.bot hr {
             border: none;
-            border-top: 1px solid #e0e4ed;
+            border-top: 1px solid var(--border-color);
             margin: 12px 0;
         }
         .msg.bot strong {
-            color: #131625;
+            color: var(--text-secondary);
         }
         .msg .msg-time {
             font-size: 10px;
@@ -702,7 +812,7 @@
             text-align: right;
         }
         .msg.bot .msg-time {
-            color: #6b78a0;
+            color: var(--text-muted);
         }
         .msg.user .msg-time {
             color: rgba(255, 255, 255, 0.7);
@@ -712,28 +822,29 @@
             display: flex;
             gap: 12px;
             padding: 14px 20px 18px;
-            border-top: 1px solid #edf0f7;
-            background: #fafbfd;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-profile);
             border-radius: 0 0 18px 18px;
+            transition: background 0.3s, border-color 0.3s;
         }
         .chat-input-area input {
             flex: 1;
             padding: 10px 18px;
             border-radius: 40px;
-            border: 1.5px solid #edf0f7;
+            border: 1.5px solid var(--border-color);
             font-family: 'Inter', sans-serif;
             font-size: 14px;
             outline: none;
-            transition: 0.2s;
-            background: #ffffff;
-            color: #1e1e2f;
+            transition: 0.2s, background 0.3s, border-color 0.3s;
+            background: var(--bg-input);
+            color: var(--text-primary);
         }
         .chat-input-area input:focus {
-            border-color: #7C3AED;
+            border-color: var(--accent);
             box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.08);
         }
         .chat-input-area input::placeholder {
-            color: #a6b0cc;
+            color: var(--text-light);
         }
         .chat-input-area .btn {
             flex-shrink: 0;
@@ -742,13 +853,31 @@
 
         /* ---------- TAB 4: FEEDBACK ---------- */
         .feedback-container {
-            background: #ffffff;
+            background: var(--bg-card);
             border-radius: 18px;
-            border: 1px solid #edf0f7;
+            border: 1px solid var(--border-color);
             padding: 30px 40px;
             flex: 1;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 16px var(--shadow-color);
             overflow-y: auto;
+            transition: background 0.3s, border-color 0.3s;
+        }
+        .feedback-container h3 {
+            color: var(--text-secondary);
+        }
+        .feedback-container label {
+            color: var(--text-muted);
+        }
+        .feedback-container input,
+        .feedback-container textarea {
+            background: var(--bg-input);
+            color: var(--text-primary);
+            border-color: var(--border-color);
+            transition: background 0.3s, border-color 0.3s, color 0.3s;
+        }
+        .feedback-container input:focus,
+        .feedback-container textarea:focus {
+            border-color: var(--accent);
         }
 
         /* ---------- RESPONSIVE ---------- */
@@ -811,7 +940,7 @@
                 width: 100%;
                 min-width: unset;
                 border-right: none;
-                border-bottom: 1px solid #edf0f7;
+                border-bottom: 1px solid var(--border-color);
                 max-height: 160px;
                 padding: 14px;
             }
@@ -900,7 +1029,7 @@
         </div>
 
         <div class="sidebar-footer">
-            <i class="fas fa-circle" style="color:#22c55e; font-size:8px;"></i> System Live
+            <i class="fas fa-circle" style="color:var(--success); font-size:8px;"></i> System Live
         </div>
     </aside>
 
@@ -914,6 +1043,9 @@
                 <span id="pageTitle">Sentiment Analysis</span>
             </div>
             <div class="header-actions">
+                <button class="dark-toggle" id="darkModeToggle" title="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
                 <div class="status-chip">
                     <span class="dot"></span> System Online
                 </div>
@@ -946,42 +1078,43 @@
                                     <div style="flex:1; min-width:240px;">
                                         <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
                                             <span id="sentimentTag" class="tag" style="font-size:22px; padding:8px 24px; border-radius:40px; font-weight:600;">Positive</span>
-                                            <span id="sentimentConfidence" style="font-size:28px; font-weight:700; color:#131625;">96.4%</span>
+                                            <span id="sentimentConfidence" style="font-size:28px; font-weight:700; color:var(--text-secondary);">96.4%</span>
                                         </div>
-                                        <div id="sentimentDetail" style="font-size:16px; color:#6b78a0; margin-top:6px;">Model predicts "good" sentiment.</div>
+                                        <div id="sentimentDetail" style="font-size:16px; color:var(--text-muted); margin-top:6px;">Model predicts "good" sentiment.</div>
                                     </div>
                                 </div>
                                 <div style="width:100%; margin-top:20px;">
-                                    <div style="display:flex; justify-content:space-between; font-size:14px; color:#8f9abb; margin-bottom:4px;">
+                                    <div style="display:flex; justify-content:space-between; font-size:14px; color:var(--text-light); margin-bottom:4px;">
                                         <span>Confidence</span>
                                         <span id="confidencePercentLabel">96.4%</span>
                                     </div>
-                                    <div style="height:10px; background:#e8ecf3; border-radius:6px; overflow:hidden; width:100%;">
-                                        <div id="confidenceBar" style="height:100%; width:0%; background:linear-gradient(90deg, #7C3AED, #A78BFA); border-radius:6px; transition: width 0.8s ease;"></div>
+                                    <div style="height:10px; background:var(--border-color); border-radius:6px; overflow:hidden; width:100%;">
+                                        <div id="confidenceBar" style="height:100%; width:0%; background:linear-gradient(90deg, var(--accent), #A78BFA); border-radius:6px; transition: width 0.8s ease;"></div>
                                     </div>
                                 </div>
-                                <div id="probabilitiesContainer" style="margin-top:20px; display:flex; gap:24px; flex-wrap:wrap; border-top:1px solid #edf0f7; padding-top:20px;">
+                                <div id="probabilitiesContainer" style="margin-top:20px; display:flex; gap:24px; flex-wrap:wrap; border-top:1px solid var(--border-color); padding-top:20px;">
                                     <!-- populated by JS -->
                                 </div>
                             </div>
                         </div>
-                        <div style="margin-top:16px; font-size:14px; color:#a6b0cc; display:flex; gap:24px; justify-content:center; flex-wrap:wrap; border-top:1px solid #edf0f7; padding-top:16px;">
+                        <div style="margin-top:16px; font-size:14px; color:var(--text-light); display:flex; gap:24px; justify-content:center; flex-wrap:wrap; border-top:1px solid var(--border-color); padding-top:16px;">
                             <span>📊 Model: <strong id="modelStatus">Loading...</strong></span>
-                            <span>⚡ <span style="color:#7C3AED;">Ready</span></span>
+                            <span>⚡ <span style="color:var(--accent);">Ready</span></span>
                         </div>
                     </div>
                 </div>
             </div>
 
-<!-- ===== TAB 2: TABLEAU ===== -->
-<div class="tab-pane" id="tab2">
-    <div class="tableau-container" id="tableauContainer" style="flex:1; min-height:0; position:relative; background:#ffffff; border-radius:18px; border:1px solid #edf0f7; box-shadow:0 4px 16px rgba(0,0,0,0.04); overflow:hidden; padding:0;">
-        <iframe 
-            src="https://public.tableau.com/views/Book1_17860309637000/Dashboard1?:embed=y&:showVizHome=no&:host_url=https%3A%2F%2Fpublic.tableau.com%2F&:embed_code_version=3&:tabs=yes&:toolbar=yes&:animate_transition=yes&:display_static_image=yes&:display_spinner=yes&:display_overlay=yes&:display_count=yes&:language=en-US&:origin=viz_share_link&:device=desktop" 
-            style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;">
-        </iframe>
-    </div>
-</div>
+            <!-- ===== TAB 2: TABLEAU ===== -->
+            <div class="tab-pane" id="tab2">
+                <div class="tableau-container" id="tableauContainer" style="flex:1; min-height:0; position:relative; background:var(--bg-card); border-radius:18px; border:1px solid var(--border-color); box-shadow:0 4px 16px var(--shadow-color); overflow:hidden; padding:0;">
+                    <iframe 
+                        src="https://public.tableau.com/views/Book1_17860309637000/Dashboard1?:embed=y&:showVizHome=no&:host_url=https%3A%2F%2Fpublic.tableau.com%2F&:embed_code_version=3&:tabs=yes&:toolbar=yes&:animate_transition=yes&:display_static_image=yes&:display_spinner=yes&:display_overlay=yes&:display_count=yes&:language=en-US&:origin=viz_share_link&:device=desktop" 
+                        style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;">
+                    </iframe>
+                </div>
+            </div>
+
             <!-- ===== TAB 3: CHATBOT ===== -->
             <div class="tab-pane" id="tab3">
                 <div class="chat-wrapper">
@@ -993,7 +1126,7 @@
                         <div class="history-list" id="historyList">
                             <div class="history-empty">No conversations yet</div>
                         </div>
-                        <div style="font-size:11px; color:#a6b0cc; margin-top:10px; border-top:1px solid #edf0f7; padding-top:10px;">
+                        <div style="font-size:11px; color:var(--text-light); margin-top:10px; border-top:1px solid var(--border-color); padding-top:10px;">
                             <i class="fas fa-database"></i> 128 stored
                         </div>
                     </div>
@@ -1016,33 +1149,33 @@
             <!-- ===== TAB 4: FEEDBACK ===== -->
             <div class="tab-pane" id="tab4">
                 <div class="feedback-container">
-                    <h3 style="margin-bottom:20px; display:flex; align-items:center; gap:10px; color:#131625;">
-                        <i class="fas fa-pen" style="color:#7C3AED;"></i> We value your feedback
+                    <h3 style="margin-bottom:20px; display:flex; align-items:center; gap:10px; color:var(--text-secondary);">
+                        <i class="fas fa-pen" style="color:var(--accent);"></i> We value your feedback
                     </h3>
                     <form id="feedbackForm" style="display:flex; flex-direction:column; gap:20px; max-width:600px;">
                         <div style="display:flex; gap:20px; flex-wrap:wrap;">
                             <div style="flex:1; min-width:200px;">
-                                <label style="display:block; font-weight:500; font-size:14px; margin-bottom:6px; color:#4a5568;">First Name</label>
-                                <input type="text" id="firstName" required style="width:100%; padding:12px 16px; border-radius:12px; border:1.5px solid #edf0f7; font-family:'Inter',sans-serif; font-size:14px; outline:none; transition:0.2s;">
+                                <label style="display:block; font-weight:500; font-size:14px; margin-bottom:6px; color:var(--text-muted);">First Name</label>
+                                <input type="text" id="firstName" required style="width:100%; padding:12px 16px; border-radius:12px; border:1.5px solid var(--border-color); font-family:'Inter',sans-serif; font-size:14px; outline:none; transition:0.2s; background:var(--bg-input); color:var(--text-primary);">
                             </div>
                             <div style="flex:1; min-width:200px;">
-                                <label style="display:block; font-weight:500; font-size:14px; margin-bottom:6px; color:#4a5568;">Last Name</label>
-                                <input type="text" id="lastName" required style="width:100%; padding:12px 16px; border-radius:12px; border:1.5px solid #edf0f7; font-family:'Inter',sans-serif; font-size:14px; outline:none; transition:0.2s;">
+                                <label style="display:block; font-weight:500; font-size:14px; margin-bottom:6px; color:var(--text-muted);">Last Name</label>
+                                <input type="text" id="lastName" required style="width:100%; padding:12px 16px; border-radius:12px; border:1.5px solid var(--border-color); font-family:'Inter',sans-serif; font-size:14px; outline:none; transition:0.2s; background:var(--bg-input); color:var(--text-primary);">
                             </div>
                         </div>
                         <div>
-                            <label style="display:block; font-weight:500; font-size:14px; margin-bottom:6px; color:#4a5568;">Email</label>
-                            <input type="email" id="feedbackEmail" required style="width:100%; padding:12px 16px; border-radius:12px; border:1.5px solid #edf0f7; font-family:'Inter',sans-serif; font-size:14px; outline:none; transition:0.2s;">
+                            <label style="display:block; font-weight:500; font-size:14px; margin-bottom:6px; color:var(--text-muted);">Email</label>
+                            <input type="email" id="feedbackEmail" required style="width:100%; padding:12px 16px; border-radius:12px; border:1.5px solid var(--border-color); font-family:'Inter',sans-serif; font-size:14px; outline:none; transition:0.2s; background:var(--bg-input); color:var(--text-primary);">
                         </div>
                         <div>
-                            <label style="display:block; font-weight:500; font-size:14px; margin-bottom:6px; color:#4a5568;">Your Feedback</label>
-                            <textarea id="feedbackText" required rows="5" style="width:100%; padding:12px 16px; border-radius:12px; border:1.5px solid #edf0f7; font-family:'Inter',sans-serif; font-size:14px; resize:vertical; outline:none; transition:0.2s;"></textarea>
+                            <label style="display:block; font-weight:500; font-size:14px; margin-bottom:6px; color:var(--text-muted);">Your Feedback</label>
+                            <textarea id="feedbackText" required rows="5" style="width:100%; padding:12px 16px; border-radius:12px; border:1.5px solid var(--border-color); font-family:'Inter',sans-serif; font-size:14px; resize:vertical; outline:none; transition:0.2s; background:var(--bg-input); color:var(--text-primary);"></textarea>
                         </div>
                         <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
                             <button type="submit" class="btn btn-primary" style="padding:12px 32px;">
                                 <i class="fas fa-paper-plane"></i> Submit Feedback
                             </button>
-                            <span id="feedbackStatus" style="font-size:14px; color:#6b78a0;"></span>
+                            <span id="feedbackStatus" style="font-size:14px; color:var(--text-muted);"></span>
                         </div>
                     </form>
                     <div id="sentimentResultFeedback" style="margin-top:12px;"></div>
@@ -1057,6 +1190,25 @@
     <script>
         (function() {
             'use strict';
+
+            // ---------- Dark Mode Toggle ----------
+            const toggleBtn = document.getElementById('darkModeToggle');
+            const body = document.body;
+            const icon = toggleBtn.querySelector('i');
+
+            // Load saved preference
+            const darkMode = localStorage.getItem('darkMode') === 'true';
+            if (darkMode) {
+                body.classList.add('dark-mode');
+                icon.className = 'fas fa-sun';
+            }
+
+            toggleBtn.addEventListener('click', function() {
+                body.classList.toggle('dark-mode');
+                const isDark = body.classList.contains('dark-mode');
+                localStorage.setItem('darkMode', isDark);
+                icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+            });
 
             // ---------- DOM refs ----------
             const navItems = document.querySelectorAll('.nav-item[data-tab]');
@@ -1257,11 +1409,13 @@
             const tableauPlaceholder = document.getElementById('tableauPlaceholder');
             const tableauIframe = document.getElementById('tableauIframe');
 
-            loadTableauBtn.addEventListener('click', () => {
-                tableauPlaceholder.style.display = 'none';
-                tableauIframe.style.display = 'block';
-                tableauIframe.src = tableauIframe.src;
-            });
+            if (loadTableauBtn) {
+                loadTableauBtn.addEventListener('click', () => {
+                    tableauPlaceholder.style.display = 'none';
+                    tableauIframe.style.display = 'block';
+                    tableauIframe.src = tableauIframe.src;
+                });
+            }
 
             // ---------- FEEDBACK ----------
             const feedbackForm = document.getElementById('feedbackForm');
@@ -1283,7 +1437,7 @@
                 }
 
                 feedbackStatus.textContent = '⏳ Sending...';
-                feedbackStatus.style.color = '#7C3AED';
+                feedbackStatus.style.color = 'var(--accent)';
                 sentimentResultFeedback.innerHTML = '';
 
                 try {
@@ -1306,11 +1460,11 @@
                             const color = sentiment === 'good' ? '#22c55e' : sentiment === 'bad' ? '#ef4444' :
                                 '#f59e0b';
                             sentimentResultFeedback.innerHTML = `
-                                <div style="padding:12px 16px; border-radius:12px; background:#f8fafc; border:1px solid #edf0f7; display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+                                <div style="padding:12px 16px; border-radius:12px; background:var(--bg-result); border:1px solid var(--border-color); display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
                                     <span style="font-size:24px;">${emoji}</span>
                                     <span style="font-weight:600; color:${color};">${sentiment.charAt(0).toUpperCase() + sentiment.slice(1)}</span>
-                                    <span style="font-size:14px; color:#6b78a0;">Confidence: <strong>${confidence}%</strong></span>
-                                    <span style="font-size:13px; color:#8f9abb;">(feedback sentiment analysis)</span>
+                                    <span style="font-size:14px; color:var(--text-muted);">Confidence: <strong>${confidence}%</strong></span>
+                                    <span style="font-size:13px; color:var(--text-light);">(feedback sentiment analysis)</span>
                                 </div>
                             `;
                         }
@@ -1378,7 +1532,7 @@
                         if (targetIdx >= 0 && targetIdx < msgs.length) {
                             msgs[targetIdx].scrollIntoView({ behavior: 'smooth', block: 'center' });
                             msgs[targetIdx].style.transition = 'background 0.3s';
-                            msgs[targetIdx].style.background = '#ede9fe';
+                            msgs[targetIdx].style.background = 'var(--accent-light)';
                             setTimeout(() => {
                                 msgs[targetIdx].style.background = '';
                             }, 800);
