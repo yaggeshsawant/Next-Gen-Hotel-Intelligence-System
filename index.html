@@ -982,6 +982,36 @@
         </iframe>
     </div>
 </div>
+            <!-- ===== TAB 3: CHATBOT ===== -->
+            <div class="tab-pane" id="tab3">
+                <div class="chat-wrapper">
+                    <div class="chat-history">
+                        <div class="history-header">
+                            <h4><i class="fas fa-clock-rotate-left" style="margin-right:6px;"></i> History</h4>
+                            <button class="clear-btn" id="clearChatHistory"><i class="fas fa-trash-can"></i> Clear</button>
+                        </div>
+                        <div class="history-list" id="historyList">
+                            <div class="history-empty">No conversations yet</div>
+                        </div>
+                        <div style="font-size:11px; color:#a6b0cc; margin-top:10px; border-top:1px solid #edf0f7; padding-top:10px;">
+                            <i class="fas fa-database"></i> 128 stored
+                        </div>
+                    </div>
+
+                    <div class="chat-main">
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="msg bot">
+                                👋 Hi! I'm your hotel recommendation assistant (powered by Gemini + RAG). Ask me about hotels, amenities, or destinations.
+                                <span class="msg-time">just now</span>
+                            </div>
+                        </div>
+                        <div class="chat-input-area">
+                            <input type="text" id="chatInput" placeholder="Ask about hotels, destinations, or recommendations…" />
+                            <button class="btn btn-primary" id="sendChatBtn"><i class="fas fa-paper-plane"></i> Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- ===== TAB 4: FEEDBACK ===== -->
             <div class="tab-pane" id="tab4">
