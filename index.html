@@ -975,77 +975,13 @@
 
 <!-- ===== TAB 2: TABLEAU ===== -->
 <div class="tab-pane" id="tab2">
-    <div class="tableau-container" id="tableauContainer" style="flex:1; min-height:0; position:relative; overflow:hidden;">
-        <!-- Your Tableau embed code (with height fix) -->
-        <div class='tableauPlaceholder' id='viz1786031941516' style='position: relative; width:100%; height:100%;'>
-            <noscript>
-                <a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;Book1_17860309637000&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a>
-            </noscript>
-            <object class='tableauViz' style='display:block; width:100%; height:100%;'>
-                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-                <param name='embed_code_version' value='3' />
-                <param name='site_root' value='' />
-                <param name='name' value='Book1_17860309637000&#47;Dashboard1' />
-                <param name='tabs' value='yes' />
-                <param name='toolbar' value='yes' />
-                <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;Book1_17860309637000&#47;Dashboard1&#47;1.png' />
-                <param name='animate_transition' value='yes' />
-                <param name='display_static_image' value='yes' />
-                <param name='display_spinner' value='yes' />
-                <param name='display_overlay' value='yes' />
-                <param name='display_count' value='yes' />
-                <param name='language' value='en-US' />
-                <param name='filter' value='publish=yes' />
-            </object>
-        </div>
-        <script type='text/javascript'>
-            // Override the default sizing – set to 100% of the container
-            var divElement = document.getElementById('viz1786031941516');
-            var vizElement = divElement.getElementsByTagName('object')[0];
-            vizElement.style.width = '100%';
-            vizElement.style.height = '100%';
-            // Ensure the parent container fills the tab
-            var container = document.getElementById('tableauContainer');
-            container.style.height = '100%';
-            // Load Tableau JS only once
-            if (!document.querySelector('script[src="https://public.tableau.com/javascripts/api/viz_v1.js"]')) {
-                var scriptElement = document.createElement('script');
-                scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-                vizElement.parentNode.insertBefore(scriptElement, vizElement);
-            }
-        </script>
+    <div class="tableau-container" id="tableauContainer" style="flex:1; min-height:0; position:relative; background:#ffffff; border-radius:18px; border:1px solid #edf0f7; box-shadow:0 4px 16px rgba(0,0,0,0.04); overflow:hidden; padding:0;">
+        <iframe 
+            src="https://public.tableau.com/views/Book1_17860309637000/Dashboard1?:embed=y&:showVizHome=no&:host_url=https%3A%2F%2Fpublic.tableau.com%2F&:embed_code_version=3&:tabs=yes&:toolbar=yes&:animate_transition=yes&:display_static_image=yes&:display_spinner=yes&:display_overlay=yes&:display_count=yes&:language=en-US&:origin=viz_share_link&:device=desktop" 
+            style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;">
+        </iframe>
     </div>
 </div>
-            <!-- ===== TAB 3: CHATBOT ===== -->
-            <div class="tab-pane" id="tab3">
-                <div class="chat-wrapper">
-                    <div class="chat-history">
-                        <div class="history-header">
-                            <h4><i class="fas fa-clock-rotate-left" style="margin-right:6px;"></i> History</h4>
-                            <button class="clear-btn" id="clearChatHistory"><i class="fas fa-trash-can"></i> Clear</button>
-                        </div>
-                        <div class="history-list" id="historyList">
-                            <div class="history-empty">No conversations yet</div>
-                        </div>
-                        <div style="font-size:11px; color:#a6b0cc; margin-top:10px; border-top:1px solid #edf0f7; padding-top:10px;">
-                            <i class="fas fa-database"></i> 128 stored
-                        </div>
-                    </div>
-
-                    <div class="chat-main">
-                        <div class="chat-messages" id="chatMessages">
-                            <div class="msg bot">
-                                👋 Hi! I'm your hotel recommendation assistant (powered by Gemini + RAG). Ask me about hotels, amenities, or destinations.
-                                <span class="msg-time">just now</span>
-                            </div>
-                        </div>
-                        <div class="chat-input-area">
-                            <input type="text" id="chatInput" placeholder="Ask about hotels, destinations, or recommendations…" />
-                            <button class="btn btn-primary" id="sendChatBtn"><i class="fas fa-paper-plane"></i> Send</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <!-- ===== TAB 4: FEEDBACK ===== -->
             <div class="tab-pane" id="tab4">
